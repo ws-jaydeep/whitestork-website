@@ -66,11 +66,13 @@ export function CommonPageHeader({
       <motion.div
         className="page-header-orb absolute left-[8%] top-14 hidden size-28 rounded-full lg:block"
         animate={{
-          y: [0, -18, 0, 14, 0],
-          scale: [1, 1.04, 1, 0.98, 1],
+          y: [0, -28, 0, 22, 0],
+          x: [0, 10, 0, -8, 0],
+          scale: [1, 1.07, 1, 0.96, 1],
+          opacity: [0.82, 1, 0.88, 0.74, 0.82],
         }}
         transition={{
-          duration: 4.2,
+          duration: 4.8,
           repeat: Infinity,
           ease: "easeInOut",
         }}
@@ -79,11 +81,13 @@ export function CommonPageHeader({
       <motion.div
         className="page-header-orb page-header-orb-delayed absolute bottom-10 right-[10%] hidden size-36 rounded-full lg:block"
         animate={{
-          y: [0, 16, 0, -20, 0],
-          scale: [1, 0.98, 1, 1.05, 1],
+          y: [0, 24, 0, -28, 0],
+          x: [0, -12, 0, 10, 0],
+          scale: [1, 0.95, 1, 1.08, 1],
+          opacity: [0.8, 0.68, 0.88, 1, 0.8],
         }}
         transition={{
-          duration: 4.8,
+          duration: 5.4,
           repeat: Infinity,
           ease: "easeInOut",
         }}

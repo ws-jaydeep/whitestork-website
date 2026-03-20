@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SiteFooter } from "@/components/footer";
 import { SiteHeader } from "@/components/header";
+import { ScrollToTopButton } from "@/components/scroll-to-top-button";
 import { DEFAULT_SITE_THEME } from "@/constants/themes";
 import "./globals.css";
 
@@ -36,10 +37,12 @@ export default function RootLayout({
             `,
           }}
         />
-        <div className="flex min-h-screen flex-col bg-background text-foreground">
+        <div className="app-shell flex min-h-screen flex-col bg-background text-foreground">
+       
           <SiteHeader />
           <main className="flex-1">{children}</main>
           <SiteFooter />
+          <ScrollToTopButton />
         </div>
       </body>
     </html>

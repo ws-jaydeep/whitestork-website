@@ -1,6 +1,7 @@
 "use client";
 
 import type { ElementType, ReactNode } from "react";
+import SplitText from "@/components/SplitText";
 import { cn } from "@/lib/utils";
 
 type CommonSectionTitleProps = {
@@ -75,14 +76,21 @@ export function CommonSectionTitle({
           {eyebrow}
         </p>
       ) : null}
-      <Heading
+      <SplitText
+        tag={Heading}
+        text={title}
+        splitType="words"
+        delay={40}
+        duration={0.9}
+        rootMargin="-40px"
+        textAlign={isCentered ? "center" : "left"}
         className={cn(
-          "brand-title mt-3 font-[family:var(--font-heading)] text-3xl font-semibold sm:text-4xl lg:text-5xl",
+          "brand-title mt-3 text-balance font-[family:var(--font-heading)] text-3xl font-semibold sm:text-4xl lg:text-5xl",
           titleClassName,
         )}
       >
         {renderHighlightedTitle(title, highlights, highlightClassName)}
-      </Heading>
+      </SplitText>
       {description ? (
         <div
           className={cn(

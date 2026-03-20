@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import BlurText from "@/components/BlurText";
 import { Container } from "@/components/container";
 import { CommonProfileCard } from "@/components/common-profile-card";
 import { CommonSectionTitle } from "@/components/common-section-title";
@@ -126,19 +127,35 @@ export function AboutEmployeesSection() {
                       </div>
 
                       <div className="flex flex-col justify-center bg-[color:var(--brand-surface-strong)] p-5 sm:p-10 lg:p-12">
-                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--brand-base)] sm:text-sm">
-                          Team Member
-                        </p>
-                        <h3 className="brand-title mt-3 text-2xl font-semibold leading-tight sm:text-4xl">
-                          {selectedEmployee.name}
-                        </h3>
-                        <p className="brand-copy mt-2 text-[0.98rem] leading-7 sm:mt-3 sm:text-lg">
-                          {selectedEmployee.designation} - {selectedEmployee.subDesignation}
-                        </p>
+                        <BlurText
+                          as="p"
+                          text="Team Member"
+                          animateBy="words"
+                          delay={20}
+                          className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--brand-base)] sm:text-sm"
+                        />
+                        <BlurText
+                          as="h3"
+                          text={selectedEmployee.name}
+                          animateBy="words"
+                          delay={26}
+                          className="brand-title mt-3 text-2xl font-semibold leading-tight sm:text-4xl"
+                        />
+                        <BlurText
+                          as="p"
+                          text={`${selectedEmployee.designation} - ${selectedEmployee.subDesignation}`}
+                          animateBy="words"
+                          delay={18}
+                          className="brand-copy mt-2 text-[0.98rem] leading-7 sm:mt-3 sm:text-lg"
+                        />
                         <div className="mt-4 h-px w-16 bg-[linear-gradient(90deg,var(--brand-base),transparent)] sm:mt-6 sm:w-20" />
-                        <p className="mt-4 text-[0.98rem] leading-7 text-[var(--brand-strong)] sm:mt-6 sm:text-lg sm:leading-8">
-                          {selectedEmployee.description}
-                        </p>
+                        <BlurText
+                          as="p"
+                          text={selectedEmployee.description}
+                          animateBy="words"
+                          delay={14}
+                          className="mt-4 text-[0.98rem] leading-7 text-[var(--brand-strong)] sm:mt-6 sm:text-lg sm:leading-8"
+                        />
                       </div>
                     </div>
                   </motion.div>

@@ -3,9 +3,9 @@
 import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
+import BlurText from "@/components/BlurText";
 import { Container } from "@/components/container";
 import { SectionReveal } from "@/components/section-reveal";
-import TextType from "@/components/TextType";
 import { UiSelect } from "@/components/ui/select";
 import {
   renderUiCompDataArr,
@@ -108,7 +108,13 @@ export function ServicesShowcase() {
                             isActive ? "text-[var(--brand-strong)]" : "text-inherit"
                           }`}
                         >
-                          {item.label}
+                          <BlurText
+                            as="span"
+                            text={item.label}
+                            animateBy="words"
+                            delay={20}
+                            className="!inline-flex !flex-none"
+                          />
                         </span>
                       </span>
                     </span>
@@ -135,16 +141,12 @@ export function ServicesShowcase() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.08, duration: 0.34 }}
                 >
-                  <TextType
+                  <BlurText
                     key={`${activePanel.uiName}-heading`}
                     as="h2"
                     text={activePanel.heading}
-                    typingSpeed={28}
-                    deletingSpeed={18}
-                    pauseDuration={2200}
-                    loop={false}
-                    startOnVisible
-                    showCursor={false}
+                    animateBy="words"
+                    delay={55}
                     className="font-[family:var(--font-heading)] text-3xl font-semibold leading-tight text-[var(--brand-strong)] sm:text-4xl"
                   />
                 </motion.div>
@@ -153,17 +155,12 @@ export function ServicesShowcase() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.12, duration: 0.34 }}
                 >
-                  <TextType
+                  <BlurText
                     key={`${activePanel.uiName}-subheading`}
                     as="p"
                     text={activePanel.subHeading}
-                    typingSpeed={16}
-                    deletingSpeed={12}
-                    initialDelay={250}
-                    pauseDuration={2200}
-                    loop={false}
-                    startOnVisible
-                    showCursor={false}
+                    animateBy="words"
+                    delay={34}
                     className="mt-5 text-lg font-medium leading-8 text-[var(--brand-strong)]"
                   />
                 </motion.div>
@@ -172,17 +169,12 @@ export function ServicesShowcase() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.16, duration: 0.34 }}
                 >
-                  <TextType
+                  <BlurText
                     key={`${activePanel.uiName}-paragraph`}
                     as="p"
                     text={activePanel.paragraph}
-                    typingSpeed={8}
-                    deletingSpeed={8}
-                    initialDelay={500}
-                    pauseDuration={2200}
-                    loop={false}
-                    startOnVisible
-                    showCursor={false}
+                    animateBy="words"
+                    delay={18}
                     className="mt-6 text-base leading-8 text-[var(--brand-muted)]"
                   />
                 </motion.div>
@@ -191,17 +183,12 @@ export function ServicesShowcase() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.34 }}
                 >
-                  <TextType
+                  <BlurText
                     key={`${activePanel.uiName}-paragraph-bottom`}
                     as="p"
                     text={activePanel.paraButtom}
-                    typingSpeed={8}
-                    deletingSpeed={8}
-                    initialDelay={850}
-                    pauseDuration={2200}
-                    loop={false}
-                    startOnVisible
-                    showCursor={false}
+                    animateBy="words"
+                    delay={18}
                     className="mt-5 text-base leading-8 text-[var(--brand-muted)]"
                   />
                 </motion.div>
@@ -240,17 +227,19 @@ export function ServicesShowcase() {
               {activePanel.servicesSection.map((service) => (
                 <div
                   key={service.lable}
-                  className="inline-flex items-center gap-2 rounded-full border border-[var(--brand-border)] bg-[color:var(--brand-surface)] px-4 py-2.5 text-sm font-semibold text-[var(--brand-strong)]"
+                  className="inline-flex max-w-full items-center gap-2 rounded-[22px] border border-[var(--brand-border)] bg-[color:var(--brand-surface)] px-4 py-2.5 text-sm font-semibold text-[var(--brand-strong)]"
                 >
                   <Image
                     src={service.icon}
                     alt=""
                     width={24}
                     height={24}
-                    className="object-contain"
+                    className="shrink-0 object-contain"
                     aria-hidden="true"
                   />
-                  <span>{service.lable}</span>
+                  <span className="min-w-0 whitespace-normal break-words leading-6">
+                    {service.lable}
+                  </span>
                 </div>
               ))}
             </motion.div>

@@ -201,6 +201,9 @@
   --cta-gradient-hover-start: #59b1f0;
   --cta-gradient-hover-end: #2d89d4;
   --cta-shadow: 0 16px 30px rgba(37, 127, 200, 0.34);
+  --shape-grid-line: color-mix(in srgb, var(--brand-base) 14%, transparent);
+  --shape-grid-dot: color-mix(in srgb, var(--brand-soft) 18%, transparent);
+  --shape-grid-glow: color-mix(in srgb, var(--brand-soft) 10%, transparent);
 }
 
 html[data-theme="forest"] {
@@ -345,6 +348,11 @@ html.dark[data-theme="sunset"] {
   --cta-gradient-hover-start: #d3a786;
   --cta-gradient-hover-end: #b18362;
   --cta-shadow: 0 16px 30px rgba(167, 119, 88, 0.3);
+}
+
+.app-shell {
+  position: relative;
+  isolation: isolate;
 }
 
 html[data-theme="rose"] {

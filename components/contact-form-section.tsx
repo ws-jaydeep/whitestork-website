@@ -14,6 +14,7 @@ import {
   Send,
   Twitter,
 } from "lucide-react";
+import BlurText from "@/components/BlurText";
 import { Container } from "@/components/container";
 import { CommonSectionTitle } from "@/components/common-section-title";
 import { SectionReveal } from "@/components/section-reveal";
@@ -165,10 +166,20 @@ export function ContactFormSection() {
                 <CheckCircle2 className="size-5" />
               </div>
               <div>
-                <p className="font-medium text-[var(--brand-strong)]">Message submitted successfully</p>
-                <p className="mt-1 text-sm leading-6 text-[var(--brand-muted)]">
-                  Thanks for reaching out. We will get back to you soon.
-                </p>
+                <BlurText
+                  as="p"
+                  text="Message submitted successfully"
+                  animateBy="words"
+                  delay={20}
+                  className="font-medium text-[var(--brand-strong)]"
+                />
+                <BlurText
+                  as="p"
+                  text="Thanks for reaching out. We will get back to you soon."
+                  animateBy="words"
+                  delay={16}
+                  className="mt-1 text-sm leading-6 text-[var(--brand-muted)]"
+                />
               </div>
             </div>
           </motion.div>
@@ -201,12 +212,24 @@ export function ContactFormSection() {
                   <Mail className="size-4 sm:size-5" />
                 </div>
                 <div className="min-w-0">
-                  <p className="text-sm font-medium text-[var(--brand-muted)]">Email</p>
+                  <BlurText
+                    as="p"
+                    text="Email"
+                    animateBy="words"
+                    delay={18}
+                    className="text-sm font-medium text-[var(--brand-muted)]"
+                  />
                   <Link
                     href={primaryEmail.href}
                     className="mt-1 inline-block break-all text-base leading-7 text-[var(--brand-strong)] transition hover:text-[var(--brand-base)] sm:text-lg"
                   >
-                    {primaryEmail.label.replace(" (For Legal)", "")}
+                    <BlurText
+                      as="span"
+                      text={primaryEmail.label.replace(" (For Legal)", "")}
+                      animateBy="words"
+                      delay={16}
+                      className="!inline-flex !flex-none"
+                    />
                   </Link>
                 </div>
               </div>
@@ -216,12 +239,24 @@ export function ContactFormSection() {
                   <Phone className="size-4 sm:size-5" />
                 </div>
                 <div className="min-w-0">
-                  <p className="text-sm font-medium text-[var(--brand-muted)]">Phone</p>
+                  <BlurText
+                    as="p"
+                    text="Phone"
+                    animateBy="words"
+                    delay={18}
+                    className="text-sm font-medium text-[var(--brand-muted)]"
+                  />
                   <Link
                     href={footerContent.phone.href}
                     className="mt-1 inline-block text-base leading-7 text-[var(--brand-strong)] transition hover:text-[var(--brand-base)] sm:text-lg"
                   >
-                    {footerContent.phone.label}
+                    <BlurText
+                      as="span"
+                      text={footerContent.phone.label}
+                      animateBy="words"
+                      delay={16}
+                      className="!inline-flex !flex-none"
+                    />
                   </Link>
                 </div>
               </div>
@@ -231,14 +266,26 @@ export function ContactFormSection() {
                   <MapPin className="size-4 sm:size-5" />
                 </div>
                 <div className="min-w-0">
-                  <p className="text-sm font-medium text-[var(--brand-muted)]">Address</p>
+                  <BlurText
+                    as="p"
+                    text="Address"
+                    animateBy="words"
+                    delay={18}
+                    className="text-sm font-medium text-[var(--brand-muted)]"
+                  />
                   <Link
                     href={primaryLocation.href}
                     target="_blank"
                     rel="noreferrer"
                     className="mt-1 inline-block text-base leading-7 text-[var(--brand-strong)] transition hover:text-[var(--brand-base)] sm:text-lg sm:leading-9"
                   >
-                    {primaryLocation.label}
+                    <BlurText
+                      as="span"
+                      text={primaryLocation.label}
+                      animateBy="words"
+                      delay={16}
+                      className="!inline-flex !flex-none"
+                    />
                   </Link>
                 </div>
               </div>
@@ -351,9 +398,13 @@ export function ContactFormSection() {
               </div>
 
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <p className="max-w-md text-sm leading-6 text-[var(--brand-muted)]">
-                  Please make sure your email is correct so we can reply.
-                </p>
+                <BlurText
+                  as="p"
+                  text="Please make sure your email is correct so we can reply."
+                  animateBy="words"
+                  delay={14}
+                  className="max-w-md text-sm leading-6 text-[var(--brand-muted)]"
+                />
                 <button
                   type="submit"
                   className={cn(
@@ -368,9 +419,13 @@ export function ContactFormSection() {
               </div>
 
               {isSubmitted ? (
-                <p className="text-sm text-[var(--brand-muted)]">
-                  Form submitted successfully.
-                </p>
+                <BlurText
+                  as="p"
+                  text="Form submitted successfully."
+                  animateBy="words"
+                  delay={14}
+                  className="text-sm text-[var(--brand-muted)]"
+                />
               ) : null}
             </form>
           </div>

@@ -1,8 +1,8 @@
 "use client";
 
 import Image, { type StaticImageData } from "next/image";
+import BlurText from "@/components/BlurText";
 import { cn } from "@/lib/utils";
-import { s } from "framer-motion/client";
 
 type CommonProfileCardProps = {
   name: string;
@@ -47,15 +47,27 @@ export function CommonProfileCard({
           </div>
 
           <div className="flex translate-y-0 flex-col items-center justify-end text-center transition duration-500 ease-out group-hover:-translate-y-1">
-            <h3 className="brand-title text-2xl font-semibold transition duration-500 group-hover:text-[var(--brand-base)]">
-              {name}
-            </h3>
-            <p className="brand-copy mt-2 max-w-[22rem] text-sm leading-6 transition duration-500 group-hover:text-[var(--brand-strong)]/80 sm:text-base">
-              {designation}
-            </p>
-            <p className="brand-copy mt-2 max-w-[22rem] text-sm leading-6 transition duration-500 group-hover:text-[var(--brand-strong)]/80 sm:text-base">
-              {subDesignation}
-            </p>
+            <BlurText
+              as="h3"
+              text={name}
+              animateBy="words"
+              delay={26}
+              className="brand-title text-2xl font-semibold transition duration-500 group-hover:text-[var(--brand-base)]"
+            />
+            <BlurText
+              as="p"
+              text={designation}
+              animateBy="words"
+              delay={18}
+              className="brand-copy mt-2 max-w-[22rem] text-sm leading-6 transition duration-500 group-hover:text-[var(--brand-strong)]/80 sm:text-base"
+            />
+            <BlurText
+              as="p"
+              text={subDesignation}
+              animateBy="words"
+              delay={18}
+              className="brand-copy mt-2 max-w-[22rem] text-sm leading-6 transition duration-500 group-hover:text-[var(--brand-strong)]/80 sm:text-base"
+            />
           </div>
         </div>
       </div>

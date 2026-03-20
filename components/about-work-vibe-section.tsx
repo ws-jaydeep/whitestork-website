@@ -3,6 +3,7 @@
 import { useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Pause, Play } from "lucide-react";
+import BlurText from "@/components/BlurText";
 import { Container } from "@/components/container";
 import { CommonSectionTitle } from "@/components/common-section-title";
 import { SectionReveal } from "@/components/section-reveal";
@@ -99,12 +100,20 @@ export function AboutWorkVibeSection() {
                     className="mb-3 h-1.5 w-14 rounded-full"
                     style={{ backgroundColor: activeItem.accent }}
                   />
-                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/70">
-                    WhiteStork Culture
-                  </p>
-                  <h3 className="mt-2 font-[family:var(--font-heading)] text-2xl font-semibold text-white sm:text-3xl">
-                    {activeItem.title}
-                  </h3>
+                  <BlurText
+                    as="p"
+                    text="WhiteStork Culture"
+                    animateBy="words"
+                    delay={20}
+                    className="text-xs font-semibold uppercase tracking-[0.24em] text-white/70"
+                  />
+                  <BlurText
+                    as="h3"
+                    text={activeItem.title}
+                    animateBy="words"
+                    delay={28}
+                    className="mt-2 font-[family:var(--font-heading)] text-2xl font-semibold text-white sm:text-3xl"
+                  />
                 </div>
 
                 <button
@@ -145,12 +154,20 @@ export function AboutWorkVibeSection() {
 
                   <div className="flex items-center justify-between gap-4 pl-2">
                     <div>
-                      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--brand-muted)]">
-                        Clip {String(index + 1).padStart(2, "0")}
-                      </p>
-                      <p className="mt-1 text-base font-semibold text-[var(--brand-strong)]">
-                        {item.title}
-                      </p>
+                      <BlurText
+                        as="p"
+                        text={`Clip ${String(index + 1).padStart(2, "0")}`}
+                        animateBy="words"
+                        delay={18}
+                        className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--brand-muted)]"
+                      />
+                      <BlurText
+                        as="p"
+                        text={item.title}
+                        animateBy="words"
+                        delay={22}
+                        className="mt-1 text-base font-semibold text-[var(--brand-strong)]"
+                      />
                     </div>
                     <span
                       className={cn(

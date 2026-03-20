@@ -1,11 +1,13 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import BlurText from "@/components/BlurText";
+import CountUp from "@/components/CountUp";
 import { Container } from "@/components/container";
 import { CommonSectionTitle } from "@/components/common-section-title";
 import { SectionReveal } from "@/components/section-reveal";
 import type { IFactsAboutData } from "@/constants/content-types";
 import { Facts_About } from "@/constants/about-content";
+import { useMemo } from "react";
 
 function parseCountText(text: string) {
   const match = text.match(/^([0-9]+(?:\.[0-9]+)?)(.*)$/);
@@ -16,27 +18,6 @@ function parseCountText(text: string) {
 function FactsCard({ fact }: { fact: IFactsAboutData }) {
   const Icon = fact.icon;
   const { value, suffix } = useMemo(() => parseCountText(fact.title), [fact.title]);
-  const [current, setCurrent] = useState(0);
-
-  useEffect(() => {
-    let start = 0;
-    const duration = 900;
-    const step = 16;
-    const steps = Math.max(1, Math.floor(duration / step));
-    const increment = value / steps;
-
-    const timer = setInterval(() => {
-      start += increment;
-      if (start >= value) {
-        setCurrent(value);
-        clearInterval(timer);
-      } else {
-        setCurrent(Number(start.toFixed(0)));
-      }
-    }, step);
-
-    return () => clearInterval(timer);
-  }, [value]);
 
   return (
     <article className="rounded-3xl border border-[var(--brand-border)] bg-[var(--card)] p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-xl">
@@ -49,10 +30,16 @@ function FactsCard({ fact }: { fact: IFactsAboutData }) {
         </div>
         <div>
           <p className="text-2xl font-bold text-[var(--brand-strong)]">
-            {current}
+            <CountUp to={value} duration={1.2} className="tabular-nums" />
             {suffix}
           </p>
-          <p className="text-sm text-[var(--brand-muted)]">{fact.description}</p>
+          <BlurText
+            as="p"
+            text={fact.description}
+            animateBy="words"
+            delay={18}
+            className="text-sm text-[var(--brand-muted)]"
+          />
         </div>
       </div>
     </article>
@@ -65,10 +52,8 @@ export function AboutFactsSection() {
       <Container>
         <SectionReveal onView>
           <CommonSectionTitle
-          //   eyebrow="Company Snapshot"
             title="Excellent Facts!"
             highlights={["Excellent"]}
-          //   description="We focus on real outcomes for clients and teams-trust, quality, and growth across every project."
           />
         </SectionReveal>
         <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
@@ -77,7 +62,6 @@ export function AboutFactsSection() {
               <FactsCard fact={fact} />
             </SectionReveal>
           ))}
-          
         </div>
       </Container>
     </section>

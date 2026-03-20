@@ -10,6 +10,7 @@ import {
   Twitter,
 } from "lucide-react";
 import { footerContent } from "@/constants/header-footer-content";
+import BlurText from "@/components/BlurText";
 import { Container } from "@/components/container";
 import { SectionReveal } from "@/components/section-reveal";
 
@@ -43,11 +44,11 @@ export function SiteFooter() {
                 height={46}
                 className="h-11 w-auto object-contain"
               />
-            </Link>
+            </Link>  
           </div>
 
           <div className="space-y-4 sm:max-w-md">
-            <h3 className="brand-title text-xl font-semibold">Services</h3>
+            <BlurText as="h3" text="Services" animateBy="words" delay={30} className="brand-title text-xl font-semibold" />
             <ul className="brand-copy grid gap-x-6 gap-y-2.5 text-[0.96rem] leading-7 sm:grid-cols-2 xl:grid-cols-1">
               {footerContent.services.map((service) => (
                 <li key={service}>
@@ -60,7 +61,7 @@ export function SiteFooter() {
           </div>
 
           <div className="space-y-4">
-            <h3 className="brand-title text-xl font-semibold">Company</h3>
+            <BlurText as="h3" text="Company" animateBy="words" delay={30} className="brand-title text-xl font-semibold" />
             <ul className="brand-copy space-y-3 text-[0.96rem] leading-7">
               {footerContent.companyLinks.map((item) => (
                 <li key={item.href}>
@@ -73,12 +74,12 @@ export function SiteFooter() {
           </div>
 
           <div className="space-y-5">
-            <h3 className="brand-title text-xl font-semibold">Contact us</h3>
+            <BlurText as="h3" text="Contact us" animateBy="words" delay={30} className="brand-title text-xl font-semibold" />
 
             <div className="flex gap-3">
               <Mail className="mt-1 size-4 shrink-0 text-[var(--brand-base)]" />
               <div className="space-y-1.5">
-                <p className="brand-title text-base font-medium">Email</p>
+                <BlurText as="p" text="Email" animateBy="words" delay={24} className="brand-title text-base font-medium" />
                 {footerContent.emails.map((item) => (
                   <Link key={item.href} href={item.href} className="brand-link block text-[0.96rem] leading-7">
                     {item.label}
@@ -90,7 +91,7 @@ export function SiteFooter() {
             <div className="flex gap-3">
               <Phone className="mt-1 size-4 shrink-0 text-[var(--brand-base)]" />
               <div className="space-y-1">
-                <p className="brand-title text-base font-medium">Mobile Number</p>
+                <BlurText as="p" text="Mobile Number" animateBy="words" delay={24} className="brand-title text-base font-medium" />
                 <Link href={footerContent.phone.href} className="brand-link text-[0.96rem] leading-7">
                   {footerContent.phone.label}
                 </Link>
@@ -100,7 +101,7 @@ export function SiteFooter() {
               <div key={location.city} className="flex gap-3">
                 <MapPin className="mt-1 size-4 shrink-0 text-[var(--brand-base)]" />
                 <div className="space-y-1">
-                  <p className="brand-title text-base font-medium">{location.city}</p>
+                  <BlurText as="p" text={location.city} animateBy="words" delay={24} className="brand-title text-base font-medium" />
                   <Link
                     href={location.href}
                     target="_blank"
@@ -139,9 +140,13 @@ export function SiteFooter() {
             })}
           </div>
 
-          <p className="order-1 text-sm text-[var(--brand-muted)] sm:order-2 lg:text-center">
-            {footerContent.copyright}
-          </p>
+          <BlurText
+            as="p"
+            text={footerContent.copyright}
+            animateBy="words"
+            delay={16}
+            className="order-1 text-sm text-[var(--brand-muted)] sm:order-2 lg:text-center"
+          />
 
           <div className="order-3 flex flex-wrap items-center gap-5 text-sm text-[var(--brand-muted)]">
             {footerContent.legalLinks.map((item) => (

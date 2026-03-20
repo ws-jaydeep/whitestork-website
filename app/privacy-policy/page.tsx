@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import BlurText from "@/components/BlurText";
 import { Container } from "@/components/container";
 import { CommonPageHeader } from "@/components/common-page-header";
 import { SectionReveal } from "@/components/section-reveal";
@@ -22,9 +23,13 @@ export default function PrivacyPolicyPage() {
           distance={34}
         >
           <div className="border-b pb-6" style={{ borderColor: "var(--legal-intro-border)" }}>
-            <p className="brand-copy text-sm leading-7">
-              {pageHeaderContent.privacy.intro}
-            </p>
+            <BlurText
+              as="p"
+              text={pageHeaderContent.privacy.intro}
+              animateBy="words"
+              delay={22}
+              className="brand-copy text-sm leading-7"
+            />
           </div>
           <div className="mt-8 space-y-8">
             {privacyData.map((section, index) => (
@@ -35,16 +40,25 @@ export default function PrivacyPolicyPage() {
                 distance={24}
                 onView
               >
-                <h2 className="brand-title text-xl font-semibold tracking-tight sm:text-2xl">
-                  {section.heading}
-                </h2>
+                <BlurText
+                  as="h2"
+                  text={section.heading}
+                  animateBy="words"
+                  delay={28}
+                  className="brand-title text-xl font-semibold tracking-tight sm:text-2xl"
+                />
                 <div className="brand-copy mt-3 space-y-3 text-base leading-8">
                   {section.para?.map((item, index) => {
                     const isLastParagraph = index === section.para.length - 1;
 
                     return (
-                      <p key={`${section.heading}-para-${index}`}>
-                        {item}
+                      <div key={`${section.heading}-para-${index}`}>
+                        <BlurText
+                          as="p"
+                          text={item}
+                          animateBy="words"
+                          delay={16}
+                        />
                         {section.email && isLastParagraph ? (
                           <>
                             {" "}
@@ -57,7 +71,7 @@ export default function PrivacyPolicyPage() {
                             .
                           </>
                         ) : null}
-                      </p>
+                      </div>
                     );
                   })}
                   {section.list ? (

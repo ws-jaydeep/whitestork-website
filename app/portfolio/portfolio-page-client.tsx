@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { ArrowUpRight, Globe, Smartphone } from "lucide-react";
 import { useRef, useState } from "react";
+import BlurText from "@/components/BlurText";
 import { Container } from "@/components/container";
 import { CommonPageHeader } from "@/components/common-page-header";
 import { PortfolioTimeline } from "@/components/portfolio-timeline";
@@ -151,13 +152,21 @@ function ProjectHoverCard({
                 : "translate-y-full opacity-0"
             } lg:translate-y-full lg:opacity-0 lg:group-hover:translate-y-0 lg:group-hover:opacity-100`}
           >
-            <p className="brand-title text-base font-semibold text-white sm:text-xl">
-              {project.name}
-            </p>
+            <BlurText
+              as="p"
+              text={project.name}
+              animateBy="words"
+              delay={35}
+              className="brand-title text-base font-semibold text-white sm:text-xl"
+            />
 
-            <p className="mt-2 line-clamp-5 text-[13px] leading-5 text-white/88 sm:mt-3 sm:line-clamp-4 sm:text-[0.96rem] sm:leading-6">
-              {project.description}
-            </p>
+            <BlurText
+              as="p"
+              text={project.description}
+              animateBy="words"
+              delay={18}
+              className="mt-2 line-clamp-5 text-[13px] leading-5 text-white/88 sm:mt-3 sm:line-clamp-4 sm:text-[0.96rem] sm:leading-6"
+            />
 
             <div className="mt-3 flex flex-wrap gap-1.5 sm:mt-4 sm:gap-2">
               {project.techStack.slice(0, 4).map((tech) => (
@@ -165,7 +174,13 @@ function ProjectHoverCard({
                   key={tech}
                   className="rounded-full border border-white/20 bg-white/10 px-2.5 py-1 text-[9px] font-medium text-white sm:px-3 sm:text-[11px]"
                 >
-                  {tech}
+                  <BlurText
+                    as="span"
+                    text={tech}
+                    animateBy="words"
+                    delay={16}
+                    className="!inline-flex !flex-none"
+                  />
                 </span>
               ))}
             </div>

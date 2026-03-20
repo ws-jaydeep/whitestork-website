@@ -86,7 +86,7 @@ export function HomeTrustedSection() {
     .map((logo) => <LogoCard key={logo.src} {...logo} />);
 
   return (
-    <section className="relative overflow-hidden pb-16 pt-4 sm:pb-20 lg:pb-24">
+    <section className="relative overflow-hidden pt-16 pb-6 sm:pt-20 sm:pb-8 lg:pt-18 lg:pb-8">
       <Container width="wide" className="relative">
         <SectionReveal className="mx-auto max-w-3xl text-center" onView>
          <CommonSectionTitle

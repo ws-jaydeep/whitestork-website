@@ -20,7 +20,7 @@ const words = [
 
 export default function HomeMain() {
   return (
-    <section className="relative overflow-hidden py-10 sm:py-14 lg:py-20">
+    <section className="relative overflow-hidden py-16 sm:py-20 lg:py-18">
       <Container width="wide" className="relative">
         <div className="grid items-center gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
           <SectionReveal className="relative z-10" onView>
@@ -53,7 +53,7 @@ export default function HomeMain() {
               initialDelay={350}
               loop
               startOnVisible
-              className="mt-4 min-h-[2.5rem] text-lg font-semibold uppercase tracking-[0.16em] text-[var(--brand-base)] sm:min-h-[2.75rem] sm:text-xl"
+              className="mt-4 min-h-[2.5rem] text-lg font-bold uppercase tracking-[0.16em] text-[var(--brand-base)] sm:min-h-[2.75rem] sm:text-xl"
             />
             <SectionReveal className="mt-1" delay={0.24} onView>
               <Link

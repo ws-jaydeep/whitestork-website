@@ -86,7 +86,7 @@ export const Facts_About: IFactsAboutData[] = [
   {
     title: "90+",
     icon: Briefcase,
-    description: "Clients Recommended Us",
+    description: "Clients",
     color: "#AA75FF",
   },
   {

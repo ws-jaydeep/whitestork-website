@@ -1,5 +1,6 @@
 "use client";
 
+import BlurText from "@/components/BlurText";
 import { Container } from "@/components/container";
 import { CommonSectionTitle } from "@/components/common-section-title";
 import { SectionReveal } from "@/components/section-reveal";
@@ -22,12 +23,18 @@ function AboutValueCard({
         <div className="flex h-20 w-20 items-center justify-center rounded-full border border-[var(--brand-base)] bg-[color:var(--brand-surface-strong)] shadow-[var(--brand-shadow)] sm:h-24 sm:w-24">
           <Icon className="h-8 w-8 text-[var(--brand-base)] sm:h-10 sm:w-10" strokeWidth={1.8} />
         </div>
-        <h3 className="brand-title mt-6 font-[family:var(--font-heading)] text-2xl font-semibold sm:text-3xl">
-          {title}
-        </h3>
+        <BlurText
+          as="h3"
+          text={title}
+          animateBy="words"
+          delay={28}
+          className="brand-title mt-6 font-[family:var(--font-heading)] text-2xl font-semibold sm:text-3xl"
+        />
         <ul className="mt-5 space-y-3 text-base leading-7 text-[var(--brand-strong)] sm:text-lg sm:leading-8">
           {points.map((point) => (
-            <li key={point}>{point}</li>
+            <li key={point}>
+              <BlurText as="span" text={point} animateBy="words" delay={20} className="!inline-flex !flex-none" />
+            </li>
           ))}
         </ul>
       </article>
