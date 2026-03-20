@@ -17,7 +17,7 @@ export type IAboutValueCard = {
 export type IEmployeeData = {
   name: string;
   designation: string;
-  subDesignation?: string;
+  subDesignation: string;
   description: string;
   image: StaticImageData;
 };

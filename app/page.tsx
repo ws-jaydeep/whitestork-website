@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
-import { AiDevelopmentSection } from "@/components/ai-development-section";
-import { HomeClientReviewSection } from "@/components/home-client-review-section";
-import { HomeChooseSection } from "@/components/home-choose-section";
-import { HomeOfferServicesSection } from "@/components/home-offer-services-section";
-import { HomeProjectCarouselSection } from "@/components/home-project-carousel-section";
-import { HomeTechStacksSection } from "@/components/home-tech-stacks-section";
-import { HomeTestimonialsSection } from "@/components/home-testimonials-section";
-import { HomeTrustedSection } from "@/components/home-trusted-section";
-import { NegotioShowcaseSection } from "@/components/negotio-showcase-section";
+import { AiDevelopmentSection } from "@/components/sections/home/ai-development-section";
+import { HomeClientReviewSection } from "@/components/sections/home/home-client-review-section";
+import { HomeChooseSection } from "@/components/sections/home/home-choose-section";
+import { HomeOfferServicesSection } from "@/components/sections/home/home-offer-services-section";
+import { HomeProjectCarouselSection } from "@/components/sections/home/home-project-carousel-section";
+import { HomeTechStacksSection } from "@/components/sections/home/home-tech-stacks-section";
+import { HomeTestimonialsSection } from "@/components/sections/home/home-testimonials-section";
+import { HomeTrustedSection } from "@/components/sections/home/home-trusted-section";
+import { NegotioShowcaseSection } from "@/components/sections/home/negotio-showcase-section";
 import { MetaData_Home } from "@/constants/metadata";
-import HomeMain from "./home/homeMain";
+import HomeMain from "@/components/sections/home/home-main";
 
 export const metadata: Metadata = MetaData_Home;
 

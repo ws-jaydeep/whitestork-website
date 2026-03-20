@@ -11,6 +11,7 @@ import {
   ShoppingCart,
   Trophy,
   Users,
+  User2,
 } from "lucide-react";
 import aman from "@/public/images/about/employees/aman.png";
 import anjali from "@/public/images/about/employees/anjali.png";
@@ -109,7 +110,7 @@ export const Facts_About: IFactsAboutData[] = [
   },
   {
     title: "5M+",
-    icon: Globe,
+    icon: User2,
     description: "Happy End-Users",
     color: "#41199E",
   },

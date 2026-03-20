@@ -5,12 +5,10 @@ import Link from "next/link";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { ArrowUpRight, Globe, Smartphone } from "lucide-react";
 import { useRef, useState } from "react";
-import BlurText from "@/components/BlurText";
-import { Container } from "@/components/container";
-import { CommonPageHeader } from "@/components/common-page-header";
-import { PortfolioTimeline } from "@/components/portfolio-timeline";
-import { SectionReveal } from "@/components/section-reveal";
-import { pageHeaderContent } from "@/constants/page-header-content";
+import BlurText from "@/components/animations/BlurText";
+import { Container } from "@/components/shared/container";
+import { PortfolioTimeline } from "@/components/sections/portfolio/portfolio-timeline";
+import { SectionReveal } from "@/components/shared/section-reveal";
 import { portfolioProjects } from "@/constants/portfolio-content";
 
 type Project = (typeof portfolioProjects)[number];
@@ -20,8 +18,6 @@ export default function PortfolioPageClient() {
 
   return (
     <>
-      <CommonPageHeader {...pageHeaderContent.portfolio} />
-
       <Container
         as="section"
         ref={timelineRef}

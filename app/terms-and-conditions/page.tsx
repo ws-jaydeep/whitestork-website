@@ -1,17 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import BlurText from "@/components/BlurText";
-import { Container } from "@/components/container";
-import { CommonPageHeader } from "@/components/common-page-header";
-import { SectionReveal } from "@/components/section-reveal";
+import BlurText from "@/components/animations/BlurText";
+import { Container } from "@/components/shared/container";
+import { CommonPageHeader } from "@/components/shared/common-page-header";
+import { SectionReveal } from "@/components/shared/section-reveal";
+import { MetaData_TermsAndConditions } from "@/constants/metadata";
 import { termsData } from "@/constants/terms-and-privacy-content";
 import { pageHeaderContent } from "@/constants/page-header-content";
 
-export const metadata: Metadata = {
-  title: "Terms & Conditions | WhiteStork Software Solutions",
-  description:
-    "Review the WhiteStork Software Solutions terms and conditions for website access, services, materials, and usage policies.",
-};
+export const metadata: Metadata = MetaData_TermsAndConditions;
 
 export default function TermsAndConditionsPage() {
   return (

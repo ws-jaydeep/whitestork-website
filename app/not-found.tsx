@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { NotFoundMotion } from "@/components/not-found-motion";
+import { NotFoundMotion } from "@/components/sections/not-found/not-found-motion";
 
 export const metadata: Metadata = {
   title: "Page Not Found | WhiteStork Software Solutions",

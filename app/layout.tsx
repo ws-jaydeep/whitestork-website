@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { SiteFooter } from "@/components/footer";
-import { SiteHeader } from "@/components/header";
-import { ScrollToTopButton } from "@/components/scroll-to-top-button";
+import { SiteFooter } from "@/components/layout/footer";
+import { SiteHeader } from "@/components/layout/header";
+import { ScrollToTopButton } from "@/components/shared/scroll-to-top-button";
 import { DEFAULT_SITE_THEME } from "@/constants/themes";
 import "./globals.css";
 

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { ContactFormSection } from "@/components/contact-form-section";
-import { CommonPageHeader } from "@/components/common-page-header";
+import { ContactFormSection } from "@/components/sections/contact/contact-form-section";
+import { CommonPageHeader } from "@/components/shared/common-page-header";
 import { MetaData_Contact } from "@/constants/metadata";
 import { pageHeaderContent } from "@/constants/page-header-content";
 
