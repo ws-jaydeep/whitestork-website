@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -51,10 +53,14 @@ export function SiteFooter() {
             <BlurText as="h3" text="Services" animateBy="words" delay={30} className="brand-title text-xl font-semibold" />
             <ul className="brand-copy grid gap-x-6 gap-y-2.5 text-[0.96rem] leading-7 sm:grid-cols-2 xl:grid-cols-1">
               {footerContent.services.map((service) => (
-                <li key={service}>
-                  <span className="brand-link inline-block">
-                    {service}
-                  </span>
+                <li key={service.renderUi}>
+                  <Link
+                    href="/services"
+                    className="brand-link inline-block"
+                    onClick={() => window.localStorage.setItem("services-active-tab", service.renderUi)}
+                  >
+                    {service.label}
+                  </Link>
                 </li>
               ))}
             </ul>

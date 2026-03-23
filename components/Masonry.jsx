@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { gsap } from 'gsap';
 
 const useMedia = (queries, values, defaultValue) => {
@@ -248,27 +249,30 @@ const Masonry = ({
       ))}
     </div>
 
-    {activeItem && (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-6" onClick={() => setActiveItem(null)}>
+    {activeItem && createPortal(
+      <div
+        className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/75 p-6"
+        onClick={() => setActiveItem(null)}
+      >
         <div
           className="relative"
           onClick={e => e.stopPropagation()}
         >
           <button
             onClick={() => setActiveItem(null)}
-            className="absolute right-4 top-4 h-9 w-9 rounded-full border border-white bg-white/20 text-lg font-bold text-white hover:bg-white/30 backdrop-blur"
+            className="absolute right-2 top-2 z-10 h-9 w-9 rounded-full border border-white bg-white/20 text-lg font-bold text-white hover:bg-white/30 backdrop-blur"
             aria-label="Close"
           >
             ×
           </button>
-
           <img
             src={activeItem.img}
             alt={`Image ${activeItem.id}`}
-            className="max-h-[60vh] max-w-[90vw] rounded-2xl object-contain"
+            className="block max-h-[85vh] max-w-[90vw] rounded-2xl object-contain"
           />
         </div>
-      </div>
+      </div>,
+      document.body
     )}
   </>
   );

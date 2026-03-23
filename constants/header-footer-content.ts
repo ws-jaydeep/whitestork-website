@@ -14,13 +14,13 @@ export const headerNavigation = {
 
 export const footerContent = {
   services: [
-    "AI Automation Services",
-    "AI Agent Development",
-    "Custom Chatbot Development",
-    "Work Flow Automation Services",
-    "Web & Mobile App Development",
-    "Infra / Cloud",
-    "Digital Marketing",
+    { label: "AI Automation Services", renderUi: "aiAuto" },
+    { label: "AI Agent Development", renderUi: "aiAgentDev" },
+    { label: "Custom Chatbot Development", renderUi: "customChatBotDev" },
+    { label: "Work Flow Automation Services", renderUi: "workFlowAutom" },
+    { label: "Web & Mobile App Development", renderUi: "webAndMobileAppDev" },
+    { label: "Infra / Cloud", renderUi: "devOps" },
+    { label: "Digital Marketing", renderUi: "digiMart" },
   ],
   companyLinks: [
     { href: "/about-us", label: "About Us" },
