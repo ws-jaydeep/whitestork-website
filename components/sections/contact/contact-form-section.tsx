@@ -140,14 +140,47 @@ export function ContactFormSection() {
 
     setIsSubmitting(true);
 
-    await new Promise((resolve) => window.setTimeout(resolve, 700));
+    try {
+      // Send data to Google Sheets via API route
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: values.name.trim(),
+          email: values.email.trim().toLowerCase(),
+          company: values.company.trim(),
+          message: values.message.trim(),
+        }),
+      });
 
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    setShowToast(true);
-    setValues(initialValues);
-    setTouched({});
-    window.setTimeout(() => setShowToast(false), 3200);
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to submit form');
+      }
+
+      // Success - show success state
+      setIsSubmitted(true);
+      setShowToast(true);
+      setValues(initialValues);
+      setTouched({});
+      setErrors({});
+
+      // Hide success message after 3.2 seconds
+      window.setTimeout(() => setShowToast(false), 3200);
+
+    } catch (error) {
+      console.error('Form submission error:', error);
+      // Show error state
+      setErrors({
+        name: 'Failed to submit form. Please try again.',
+      });
+      setIsSubmitted(false);
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -418,15 +451,7 @@ export function ContactFormSection() {
                 </button>
               </div>
 
-              {isSubmitted ? (
-                <BlurText
-                  as="p"
-                  text="Form submitted successfully."
-                  animateBy="words"
-                  delay={14}
-                  className="text-sm text-[var(--brand-muted)]"
-                />
-              ) : null}
+              
             </form>
           </div>
         </div>

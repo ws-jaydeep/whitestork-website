@@ -14,7 +14,6 @@ export const headerNavigation = {
 
 export const footerContent = {
   services: [
-    
     "AI Automation Services",
     "AI Agent Development",
     "Custom Chatbot Development",

@@ -1,12 +1,12 @@
 "use client";
 
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import Lottie from "lottie-react";
 import TextType from "@/components/animations/TextType";
 import { Container } from "@/components/shared/container";
 import { SectionReveal } from "@/components/shared/section-reveal";
 import BlurText from "@/components/animations/BlurText";
+import MotionButton from "@/components/ui/motion-button";
+import { useRouter } from "next/navigation";
 import { homePageContent } from "@/constants/home-content";
 import homeHeroAnimation from "./home-hero-animation.json";
 
@@ -19,6 +19,7 @@ const words = [
 ];
 
 export default function HomeMain() {
+  const router = useRouter();
   return (
     <section className="relative overflow-hidden py-16 sm:py-20 lg:py-18">
       <Container width="wide" className="relative">
@@ -56,20 +57,7 @@ export default function HomeMain() {
               className="mt-4 min-h-[2.5rem] text-lg font-bold uppercase tracking-[0.16em] text-[var(--brand-base)] sm:min-h-[2.75rem] sm:text-xl"
             />
             <SectionReveal className="mt-1" delay={0.24} onView>
-              <Link
-                href="/contact-us"
-                className="group flex w-fit items-center gap-3 rounded-full border border-[color:color-mix(in_srgb,var(--brand-soft)_22%,var(--brand-border))] bg-[linear-gradient(135deg,color-mix(in_srgb,var(--brand-surface)_88%,white_12%)_0%,color-mix(in_srgb,var(--card)_92%,white_8%)_100%)] px-6 py-3 text-lg font-semibold text-[var(--brand-strong)] shadow-[0_16px_36px_color-mix(in_srgb,var(--brand-base)_10%,transparent)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[color:color-mix(in_srgb,var(--brand-base)_30%,var(--brand-border))] hover:text-[var(--brand-base)] hover:shadow-[0_20px_42px_color-mix(in_srgb,var(--brand-base)_14%,transparent)]"
-              >
-                <BlurText
-                  text="Get Free Consultation"
-                  animateBy="words"
-                  delay={90}
-                  className="!block !flex-none transition-transform duration-300 group-hover:translate-x-1"
-                />
-                <span className="inline-flex size-9 items-center justify-center rounded-full bg-[var(--brand-base)] text-white shadow-[0_10px_24px_color-mix(in_srgb,var(--brand-base)_28%,transparent)] transition-transform duration-300 group-hover:translate-x-1">
-                  <ArrowRight className="size-5" />
-                </span>
-              </Link>
+              <MotionButton label="Get Free Consultation" onClick={() => router.push("/contact-us")} />
             </SectionReveal>
           </SectionReveal>
 
