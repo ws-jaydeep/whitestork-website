@@ -1,25 +1,25 @@
 "use client";
 
-import CircularGallery from "@/components/animations/CircularGallery";
+import Masonry from "@/components/Masonry";
 import { Container } from "@/components/shared/container";
 import { CommonSectionTitle } from "@/components/shared/common-section-title";
 import { SectionReveal } from "@/components/shared/section-reveal";
 
 const celebrationGalleryItems = [
-  { image: "/images/about/celebrations/about-one.png", text: "" },
-  { image: "/images/about/celebrations/about-two.png", text: "" },
-  { image: "/images/about/celebrations/about-three.png", text: "" },
-  { image: "/images/about/celebrations/about-four.png", text: "" },
-  { image: "/images/about/celebrations/about-five.png", text: "" },
-  { image: "/images/about/celebrations/about-six.png", text: "" },
-  { image: "/images/about/celebrations/about-seven.png", text: "" },
-  { image: "/images/about/celebrations/about-eight.png", text: "" },
-  { image: "/images/about/celebrations/about-nine.png", text: "" },
-  { image: "/images/about/celebrations/about-ten.png", text: "" },
-  { image: "/images/about/celebrations/about-eleven.png", text: "" },
-  { image: "/images/about/celebrations/about-twelve.png", text: "" },
-  { image: "/images/about/celebrations/about-thirteen.png", text: "" },
-  { image: "/images/about/celebrations/about-fifteen.png", text: "" },
+  { id: 1, img: "/images/about/celebrations/about-one.png", height: 400 },
+  { id: 2, img: "/images/about/celebrations/about-two.png", height: 600 },
+  { id: 3, img: "/images/about/celebrations/about-three.png", height: 450 },
+  { id: 4, img: "/images/about/celebrations/about-four.png", height: 380 },
+  { id: 5, img: "/images/about/celebrations/about-five.png", height: 420 },
+  { id: 6, img: "/images/about/celebrations/about-six.png", height: 360 },
+  { id: 7, img: "/images/about/celebrations/about-seven.png", height: 410 },
+  { id: 8, img: "/images/about/celebrations/about-eight.png", height: 390 },
+  { id: 9, img: "/images/about/celebrations/about-nine.png", height: 430 },
+  { id: 10, img: "/images/about/celebrations/about-ten.png", height: 370 },
+  { id: 11, img: "/images/about/celebrations/about-eleven.png", height: 440 },
+  { id: 12, img: "/images/about/celebrations/about-twelve.png", height: 340 },
+  { id: 13, img: "/images/about/celebrations/about-thirteen.png", height: 400 },
+  { id: 14, img: "/images/about/celebrations/about-fifteen.png", height: 380 },
 ];
 
 export function AboutCelebrationsSection() {
@@ -41,15 +41,14 @@ export function AboutCelebrationsSection() {
 
       <SectionReveal onView delay={0.1}>
         <div className="mt-10 px-4 sm:px-6 lg:px-8 xl:px-10">
-          <div className="mx-auto h-[460px] w-full sm:h-[560px] lg:h-[660px]">
-            <CircularGallery
+          <div className="relative min-h-[500px] sm:min-h-[600px] lg:min-h-[700px]">
+            <Masonry
               items={celebrationGalleryItems}
-              bend={2.8}
-              textColor="var(--brand-strong)"
-              borderRadius={0.08}
-              font="bold 32px Figtree"
-              scrollSpeed={2.2}
-              scrollEase={0.06}
+              animateFrom="bottom"
+              scaleOnHover
+              hoverScale={0.98}
+              blurToFocus
+              colorShiftOnHover
             />
           </div>
         </div>

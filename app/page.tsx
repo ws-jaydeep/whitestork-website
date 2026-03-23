@@ -4,6 +4,7 @@ import { HomeClientReviewSection } from "@/components/sections/home/home-client-
 import { HomeChooseSection } from "@/components/sections/home/home-choose-section";
 import { HomeOfferServicesSection } from "@/components/sections/home/home-offer-services-section";
 import { HomeProjectCarouselSection } from "@/components/sections/home/home-project-carousel-section";
+import { HomeTeamMasonrySection } from "@/components/sections/home/home-team-masonry-section";
 import { HomeTechStacksSection } from "@/components/sections/home/home-tech-stacks-section";
 import { HomeTestimonialsSection } from "@/components/sections/home/home-testimonials-section";
 import { HomeTrustedSection } from "@/components/sections/home/home-trusted-section";
@@ -26,6 +27,7 @@ export default function Home() {
       <HomeTestimonialsSection />
       <HomeClientReviewSection />
       <HomeTechStacksSection />
+      <HomeTeamMasonrySection />
     </>
   );
 }

@@ -12,6 +12,7 @@ import {
   Trophy,
   Users,
   User2,
+  Gem,
 } from "lucide-react";
 import aman from "@/public/images/about/employees/aman.png";
 import anjali from "@/public/images/about/employees/anjali.png";
@@ -141,7 +142,7 @@ export const About_Value_Cards: IAboutValueCard[] = [
   },
   {
     title: "Values",
-    icon: DiamondIcon,
+    icon: Gem,
     points: [
       "Simplicity in every solution.",
       "Quality in every detail.",

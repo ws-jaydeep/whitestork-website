@@ -89,12 +89,10 @@ export function HomeTrustedSection() {
     <section className="relative overflow-hidden pt-16 pb-6 sm:pt-20 sm:pb-8 lg:pt-18 lg:pb-8">
       <Container width="wide" className="relative">
         <SectionReveal className="mx-auto max-w-3xl text-center" onView>
-         <CommonSectionTitle
-                  //   eyebrow="Company Snapshot"
-                    title="Globally Trusted By"
-                    highlights={["Globally"]}
-                  //   description="We focus on real outcomes for clients and teams-trust, quality, and growth across every project."
-                  /> 
+          <CommonSectionTitle
+            title="Globally Trusted By"
+            highlights={["Globally"]}
+          />
         </SectionReveal>
       </Container>
       <SectionReveal
