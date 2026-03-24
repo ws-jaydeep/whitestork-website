@@ -57,7 +57,7 @@
   --theme-blur: 24px;
   --theme-heading-spacing: -0.03em;
   --theme-eyebrow-spacing: 0.34em;
-  --background: #f8fbff;
+  --background: transparent;
   --foreground: #113154;
   --card: #ffffff;
   --card-foreground: #113154;
@@ -576,18 +576,8 @@ html.dark[data-theme="slate"] {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
-    background-image:
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.85), rgba(248, 251, 255, 0.95)),
-      radial-gradient(circle at top left, rgba(41, 166, 235, 0.16), transparent 28%),
-      radial-gradient(circle at top right, rgba(18, 54, 111, 0.12), transparent 24%);
-  }
-
-  .dark body {
-    background-image:
-      linear-gradient(to bottom, rgba(10, 18, 30, 0.96), rgba(13, 21, 34, 0.98)),
-      radial-gradient(circle at top left, rgba(41, 166, 235, 0.18), transparent 28%),
-      radial-gradient(circle at top right, rgba(143, 205, 243, 0.12), transparent 24%);
+    @apply text-foreground;
+    background: transparent;
   }
   html {
     @apply font-sans;

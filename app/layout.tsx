@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { SiteFooter } from "@/components/layout/footer";
 import { SiteHeader } from "@/components/layout/header";
 import { ScrollToTopButton } from "@/components/shared/scroll-to-top-button";
+import { AnimatedBackground } from "@/components/shared/animated-background";
 import { DEFAULT_SITE_THEME } from "@/constants/themes";
 import "./globals.css";
 
@@ -37,10 +38,10 @@ export default function RootLayout({
             `,
           }}
         />
-        <div className="app-shell flex min-h-screen flex-col bg-background text-foreground">
-       
+        <div className="app-shell relative flex min-h-screen flex-col text-foreground">
+          <AnimatedBackground />
           <SiteHeader />
-          <main className="flex-1">{children}</main>
+          <main className="relative z-10 flex-1">{children}</main>
           <SiteFooter />
           <ScrollToTopButton />
         </div>

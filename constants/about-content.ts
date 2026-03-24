@@ -1,7 +1,6 @@
 import {
   Award,
   Briefcase,
-  DiamondIcon,
   Globe,
   Rocket,
   Smile,

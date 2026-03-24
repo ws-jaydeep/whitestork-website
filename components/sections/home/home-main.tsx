@@ -6,7 +6,6 @@ import { Container } from "@/components/shared/container";
 import { SectionReveal } from "@/components/shared/section-reveal";
 import BlurText from "@/components/animations/BlurText";
 import MotionButton from "@/components/ui/motion-button";
-import { useRouter } from "next/navigation";
 import { homePageContent } from "@/constants/home-content";
 import homeHeroAnimation from "./home-hero-animation.json";
 import Link from "next/link";
@@ -20,7 +19,6 @@ const words = [
 ];
 
 export default function HomeMain() {
-  const router = useRouter();
   return (
     <section className="relative overflow-hidden py-16 sm:py-20 lg:py-18">
       <Container width="wide" className="relative">
@@ -58,8 +56,11 @@ export default function HomeMain() {
               className="mt-4 min-h-[2.5rem] text-lg font-bold uppercase tracking-[0.16em] text-[var(--brand-base)] sm:min-h-[2.75rem] sm:text-xl"
             />
             <SectionReveal className="mt-1" delay={0.24} onView>
-              <Link href="/contact-us" className="text-sm cursor-pointer font-medium text-[var(--brand-strong)] underline-offset-4 transition-colors hover:underline">
-              <MotionButton label="Get Free Consultation"/>
+              <Link
+                href="/contact-us"
+                className="cursor-pointer text-sm font-medium text-[var(--brand-strong)] underline-offset-4 transition-colors hover:underline"
+              >
+                <MotionButton label="Get Free Consultation" />
               </Link>
             </SectionReveal>
           </SectionReveal>

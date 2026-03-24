@@ -6,16 +6,15 @@ import { Container } from "@/components/shared/container";
 import { SectionReveal } from "@/components/shared/section-reveal";
 
 const teamGalleryItems = [
-  { id: 1, img: "/images/home/team-one.png", url: "/about-us", height: 500},
-  { id: 2, img: "/images/home/team-two.png", url: "/about-us", height: 320},
-  { id: 3, img: "/images/home/team-three.png", url: "/about-us", height: 380},
-  { id: 4, img: "/images/home/team-four.png", url: "/about-us", height: 300},
-  { id: 5, img: "/images/home/team-five.png", url: "/about-us", height: 360},
-  { id: 6, img: "/images/home/team-six.png", url: "/about-us", height: 430},
-  { id: 7, img: "/images/home/teamSeven.png", url: "/about-us", height: 310 },
-  { id: 8, img: "/images/home/teamEight.png", url: "/about-us", height: 390 },
-  { id: 9, img: "/images/home/teamNine.png", url: "/about-us", height: 340 },
-  // { id: 10, img: "/images/home/team-ten.png", url: "/about-us", height: 410 },
+  { id: 1, img: "/images/home/team-one.png", url: "/about-us", height: 400},
+  { id: 2, img: "/images/home/team-two.png", url: "/about-us", height: 500},
+  { id: 3, img: "/images/home/team-three.png", url: "/about-us", height: 350},
+  { id: 4, img: "/images/home/team-four.png", url: "/about-us", height: 280},
+  { id: 5, img: "/images/home/team-five.png", url: "/about-us", height: 380},
+  { id: 6, img: "/images/home/team-six.png", url: "/about-us", height: 500},
+  { id: 7, img: "/images/home/teamSeven.png", url: "/about-us", height: 350 },
+  { id: 8, img: "/images/home/teamEight.png", url: "/about-us", height: 300 },
+  { id: 9, img: "/images/home/teamNine.png", url: "/about-us", height: 250 },
 ] as const;
 
 export function HomeTeamMasonrySection() {
@@ -32,8 +31,8 @@ export function HomeTeamMasonrySection() {
         </SectionReveal>
 
         <SectionReveal className="mt-8 sm:mt-10" delay={0.06} onView>
-          <div className="overflow-hidden rounded-[36px] border border-[var(--brand-border)] bg-transparent p-4 shadow-[0_28px_70px_color-mix(in_srgb,var(--brand-base)_10%,transparent)] sm:p-5">
-            <div className="relative min-h-[420px] sm:min-h-[560px] lg:min-h-[680px]">
+          <div className="overflow-hidden  p-4 sm:p-5">
+            <div className="relative">
               <Masonry
                 items={teamGalleryItems}
                 animateFrom="bottom"

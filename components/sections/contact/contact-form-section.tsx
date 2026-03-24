@@ -75,7 +75,6 @@ export function ContactFormSection() {
   const [values, setValues] = useState<FormValues>(initialValues);
   const [errors, setErrors] = useState<FormErrors>({});
   const [touched, setTouched] = useState<TouchedFields>({});
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const primaryEmail = footerContent.emails[2];
@@ -112,7 +111,6 @@ export function ContactFormSection() {
     } else {
       setErrors((current) => ({ ...current, [field]: undefined }));
     }
-    setIsSubmitted(false);
   }
 
   function handleBlur<K extends keyof FormValues>(field: K) {
@@ -134,7 +132,6 @@ export function ContactFormSection() {
         company: true,
         message: true,
       });
-      setIsSubmitted(false);
       return;
     }
 
@@ -162,7 +159,6 @@ export function ContactFormSection() {
       }
 
       // Success - show success state
-      setIsSubmitted(true);
       setShowToast(true);
       setValues(initialValues);
       setTouched({});
@@ -177,7 +173,6 @@ export function ContactFormSection() {
       setErrors({
         name: 'Failed to submit form. Please try again.',
       });
-      setIsSubmitted(false);
     } finally {
       setIsSubmitting(false);
     }

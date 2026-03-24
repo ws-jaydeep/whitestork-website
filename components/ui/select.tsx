@@ -37,8 +37,8 @@ export function UiSelect({
     >
       <SelectPrimitive.Trigger
         className={cn(
-          "flex h-13 w-full items-center justify-between rounded-[16px] border border-[var(--brand-border-strong)] bg-[color:var(--brand-surface)] px-4 text-sm font-semibold text-[var(--brand-strong)] shadow-[0_10px_24px_color-mix(in_srgb,var(--brand-base)_8%,transparent)] outline-none transition",
-          "data-[popup-open]:border-[var(--brand-base)]",
+          "flex h-13 w-full items-center justify-between rounded-2xl border border-[var(--brand-border)] bg-[var(--card)] px-4 text-sm font-semibold text-[var(--brand-strong)] shadow-sm outline-none transition",
+          "data-[popup-open]:border-[var(--brand-base)] data-[popup-open]:ring-2 data-[popup-open]:ring-[var(--brand-base)]/20",
           className,
         )}
       >
@@ -50,14 +50,14 @@ export function UiSelect({
 
       <SelectPrimitive.Portal>
         <SelectPrimitive.Positioner sideOffset={8}>
-          <SelectPrimitive.Popup className="z-[80] max-h-72 min-w-[var(--anchor-width)] overflow-y-auto rounded-[18px] border border-[var(--brand-border-strong)] bg-[color:var(--brand-surface-strong)] p-1.5 shadow-[var(--brand-shadow-strong)] backdrop-blur-xl outline-none">
+          <SelectPrimitive.Popup className="z-[90] max-h-72 min-w-[var(--anchor-width)] overflow-y-auto rounded-2xl border border-[var(--brand-border)] bg-[var(--card)] p-1.5 shadow-[0_18px_40px_color-mix(in_srgb,var(--brand-base)_10%,transparent)] backdrop-blur outline-none">
             <SelectPrimitive.List>
               {options.map((option) => (
                 <SelectPrimitive.Item
                   key={option.value}
                   value={option.value}
                   className={cn(
-                    "flex cursor-default items-center justify-between rounded-[14px] px-3 py-2.5 text-sm font-medium text-[var(--brand-strong)] outline-none transition",
+                    "flex cursor-default items-center justify-between rounded-xl px-3 py-2.5 text-sm font-medium text-[var(--brand-strong)] outline-none transition",
                     "data-[highlighted]:bg-[color:var(--brand-surface)]",
                     "data-[selected]:bg-[color:var(--brand-surface)]",
                   )}

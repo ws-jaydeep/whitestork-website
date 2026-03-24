@@ -2,6 +2,13 @@ import React, { useLayoutEffect, useRef, useCallback } from 'react';
 import type { ReactNode } from 'react';
 import Lenis from 'lenis';
 
+type CardTransform = {
+  blur: number;
+  rotation: number;
+  scale: number;
+  translateY: number;
+};
+
 export interface ScrollStackItemProps {
   itemClassName?: string;
   children: ReactNode;
@@ -28,7 +35,6 @@ interface ScrollStackProps {
   stackPosition?: string;
   scaleEndPosition?: string;
   baseScale?: number;
-  scaleDuration?: number;
   rotationAmount?: number;
   blurAmount?: number;
   useWindowScroll?: boolean;
@@ -45,7 +51,6 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
   stackPosition = '20%',
   scaleEndPosition = '10%',
   baseScale = 0.85,
-  scaleDuration = 0.5,
   rotationAmount = 0,
   blurAmount = 0,
   useWindowScroll = false,
@@ -57,7 +62,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
   const animationFrameRef = useRef<number | null>(null);
   const lenisRef = useRef<Lenis | null>(null);
   const cardsRef = useRef<HTMLElement[]>([]);
-  const lastTransformsRef = useRef(new Map<number, any>());
+  const lastTransformsRef = useRef(new Map<number, CardTransform>());
   const isUpdatingRef = useRef(false);
   const activeIndexRef = useRef<number>(0);
 
@@ -78,15 +83,13 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     if (useWindowScroll) {
       return {
         scrollTop: window.scrollY,
-        containerHeight: window.innerHeight,
-        scrollContainer: document.documentElement
+        containerHeight: window.innerHeight
       };
     } else {
       const scroller = scrollerRef.current;
       return {
         scrollTop: scroller ? scroller.scrollTop : 0,
-        containerHeight: scroller ? scroller.clientHeight : 0,
-        scrollContainer: scroller
+        containerHeight: scroller ? scroller.clientHeight : 0
       };
     }
   }, [useWindowScroll]);
@@ -108,7 +111,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
 
     isUpdatingRef.current = true;
 
-    const { scrollTop, containerHeight, scrollContainer } = getScrollData();
+    const { scrollTop, containerHeight } = getScrollData();
     const stackPositionPx = parsePercentage(stackPosition, containerHeight);
     const scaleEndPositionPx = parsePercentage(scaleEndPosition, containerHeight);
 
@@ -335,7 +338,6 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     stackPosition,
     scaleEndPosition,
     baseScale,
-    scaleDuration,
     rotationAmount,
     blurAmount,
     useWindowScroll,

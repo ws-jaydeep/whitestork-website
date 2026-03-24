@@ -2,16 +2,16 @@
 
 import { useEffect, useState, startTransition, useRef } from "react";
 import Image from "next/image";
-import { Check, ChevronDown } from "lucide-react";
+import { Check } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import BlurText from "@/components/animations/BlurText";
 import { Container } from "@/components/shared/container";
 import { SectionReveal } from "@/components/shared/section-reveal";
+import { UiSelect } from "@/components/ui/select";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import {
   renderUiCompDataArr,
   servicesNavBarCompDataArr,
-  servicesSectionContent,
 } from "@/constants/services-content";
 
 const STORAGE_KEY = "services-active-tab";
@@ -20,23 +20,20 @@ type ServiceUiName = (typeof servicesNavBarCompDataArr)[number]["renderUi"];
 
 export function ServicesShowcase() {
   const [activeService, setActiveService] = useState<ServiceUiName>(servicesNavBarCompDataArr[0].renderUi);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const activeServiceRef = useRef<ServiceUiName>(servicesNavBarCompDataArr[0].renderUi);
 
   useEffect(() => {
-    function handleClickOutside(e: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-        setDropdownOpen(false);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+    activeServiceRef.current = activeService;
+  }, [activeService]);
 
   useEffect(() => {
     const saved = window.localStorage.getItem(STORAGE_KEY) as ServiceUiName | null;
     const match = servicesNavBarCompDataArr.find((item) => item.renderUi === saved);
-    if (match) startTransition(() => setActiveService(match.renderUi));
+    if (match) {
+      startTransition(() => setActiveService(match.renderUi));
+      activeServiceRef.current = match.renderUi;
+    }
   }, []);
 
   function handleTabChange(value: string) {
@@ -46,54 +43,133 @@ export function ServicesShowcase() {
   }
 
   useEffect(() => {
-    const timer = window.setInterval(() => {
-      setActiveService((current) => {
-        const currentIndex = servicesNavBarCompDataArr.findIndex((item) => item.renderUi === current);
-        const nextIndex = currentIndex === -1 ? 0 : (currentIndex + 1) % servicesNavBarCompDataArr.length;
-        const next = servicesNavBarCompDataArr[nextIndex].renderUi;
-        window.localStorage.setItem(STORAGE_KEY, next);
-        return next;
-      });
-    }, servicesSectionContent.autoRotateMs);
-    return () => window.clearInterval(timer);
-  }, []);
+    const section = sectionRef.current;
+    if (!section) return;
 
+    const desktopQuery = window.matchMedia("(min-width: 1024px)");
+    let lastScrollTime = 0;
+    const interactiveSelector = "select, option, button, input, textarea, a, [role='button']";
+
+    const shouldHandleGesture = (target: EventTarget | null) => {
+      if (!desktopQuery.matches) return false;
+      if (!(target instanceof Element)) return true;
+      return !target.closest(interactiveSelector);
+    };
+
+    const handleWheel = (e: WheelEvent) => {
+      if (!shouldHandleGesture(e.target)) return;
+
+      const rect = section.getBoundingClientRect();
+      const inView = rect.top <= window.innerHeight * 0.4 && rect.bottom >= window.innerHeight * 0.6;
+      if (!inView) return;
+
+      const currentIndex = servicesNavBarCompDataArr.findIndex(
+        (item) => item.renderUi === activeServiceRef.current
+      );
+
+      const isScrollingDown = e.deltaY > 0;
+      const isScrollingUp = e.deltaY < 0;
+
+      if (currentIndex === 0 && isScrollingUp) return;
+      if (currentIndex === servicesNavBarCompDataArr.length - 1 && isScrollingDown) return;
+
+      e.preventDefault();
+
+      const now = Date.now();
+      if (now - lastScrollTime < 1000) return;
+      lastScrollTime = now;
+
+      let nextIndex = currentIndex;
+      if (isScrollingDown) {
+        nextIndex = Math.min(currentIndex + 1, servicesNavBarCompDataArr.length - 1);
+      } else if (isScrollingUp) {
+        nextIndex = Math.max(currentIndex - 1, 0);
+      }
+
+      if (nextIndex !== currentIndex) {
+        const nextService = servicesNavBarCompDataArr[nextIndex].renderUi;
+        startTransition(() => {
+          setActiveService(nextService);
+          activeServiceRef.current = nextService;
+          window.localStorage.setItem(STORAGE_KEY, nextService);
+        });
+      }
+    };
+
+    let touchStartY = 0;
+    const handleTouchStart = (e: TouchEvent) => {
+      if (!shouldHandleGesture(e.target)) return;
+      touchStartY = e.touches[0].clientY;
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (!shouldHandleGesture(e.target)) return;
+
+      const rect = section.getBoundingClientRect();
+      const inView = rect.top <= window.innerHeight * 0.4 && rect.bottom >= window.innerHeight * 0.6;
+      if (!inView) return;
+
+      const touchEndY = e.touches[0].clientY;
+      const deltaY = touchStartY - touchEndY;
+
+      const currentIndex = servicesNavBarCompDataArr.findIndex(
+        (item) => item.renderUi === activeServiceRef.current
+      );
+
+      if (Math.abs(deltaY) < 30) return;
+
+      const isScrollingDown = deltaY > 0;
+      const isScrollingUp = deltaY < 0;
+
+      if (currentIndex === 0 && isScrollingUp) return;
+      if (currentIndex === servicesNavBarCompDataArr.length - 1 && isScrollingDown) return;
+
+      e.preventDefault();
+
+      const now = Date.now();
+      if (now - lastScrollTime < 1000) return;
+      lastScrollTime = now;
+
+      let nextIndex = currentIndex;
+      if (isScrollingDown) nextIndex++;
+      else if (isScrollingUp) nextIndex--;
+
+      if (nextIndex >= 0 && nextIndex < servicesNavBarCompDataArr.length && nextIndex !== currentIndex) {
+        const nextService = servicesNavBarCompDataArr[nextIndex].renderUi;
+        startTransition(() => {
+          setActiveService(nextService);
+          activeServiceRef.current = nextService;
+          window.localStorage.setItem(STORAGE_KEY, nextService);
+        });
+      }
+    };
+
+    // Use non-passive listeners for correct event preventing
+    section.addEventListener("wheel", handleWheel, { passive: false });
+    section.addEventListener("touchstart", handleTouchStart, { passive: false });
+    section.addEventListener("touchmove", handleTouchMove, { passive: false });
+
+    return () => {
+      section.removeEventListener("wheel", handleWheel);
+      section.removeEventListener("touchstart", handleTouchStart);
+      section.removeEventListener("touchmove", handleTouchMove);
+    };
+  }, []);
   return (
-    <section className="relative bg-[var(--background)] pt-4 pb-16 sm:pt-6 sm:pb-20 lg:pt-8 lg:pb-24">
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-x-0 top-0 h-48 bg-[linear-gradient(180deg,color-mix(in_srgb,var(--brand-soft)_10%,transparent),transparent)]" />
-      </div>
+    <section ref={sectionRef} className="relative overflow-hidden bg-[var(--background)] pt-4 pb-16 sm:pt-6 sm:pb-20 lg:pb-10">
+      <div className="absolute inset-x-0 top-0 h-48 bg-[linear - gradient(180deg, color - mix(in_srgb,var(--brand - soft)_10 %, transparent),transparent)]" />
 
       <Container width="wide" className="max-w-[1520px]">
-        {/* Mobile custom dropdown */}
-        <div ref={dropdownRef} className="lg:hidden relative w-full mb-6 z-50">
-          <button
-            type="button"
-            onClick={() => setDropdownOpen((o) => !o)}
-            className="w-full flex items-center justify-between rounded-2xl border border-[var(--brand-border)] bg-[var(--card)] px-4 py-3 text-sm font-semibold text-[var(--brand-strong)] shadow-sm"
-          >
-            <span>{servicesNavBarCompDataArr.find((i) => i.renderUi === activeService)?.label}</span>
-            <ChevronDown className={`h-4 w-4 text-[var(--brand-muted)] transition-transform duration-200 ${dropdownOpen ? "rotate-180" : ""}`} />
-          </button>
-          {dropdownOpen && (
-            <div className="absolute top-full left-0 right-0 mt-2 rounded-2xl border border-[var(--brand-border)] bg-[var(--card)] shadow-lg overflow-hidden">
-              {servicesNavBarCompDataArr.map((item) => (
-                <button
-                  key={item.renderUi}
-                  type="button"
-                  onClick={() => { handleTabChange(item.renderUi); setDropdownOpen(false); }}
-                  className={`w-full flex items-center gap-3 px-4 py-3 text-sm font-semibold text-left transition-colors ${
-                    item.renderUi === activeService
-                      ? "bg-[color:var(--brand-surface)] text-[var(--brand-strong)]"
-                      : "text-[var(--brand-muted)] hover:bg-[color:var(--brand-surface)] hover:text-[var(--brand-strong)]"
-                  }`}
-                >
-                  <item.icon className="h-4 w-4 shrink-0" />
-                  {item.label}
-                </button>
-              ))}
-            </div>
-          )}
+        <div className="relative z-30 mb-6 w-full lg:hidden">
+          <UiSelect
+            value={activeService}
+            onValueChange={handleTabChange}
+            options={servicesNavBarCompDataArr.map((item) => ({
+              label: item.label,
+              value: item.renderUi,
+            }))}
+            placeholder="Select a service"
+          />
         </div>
 
         <Tabs
@@ -115,11 +191,10 @@ export function ServicesShowcase() {
                       className="group relative w-full rounded-2xl border-none bg-transparent p-0 text-left shadow-none after:hidden data-active:bg-transparent data-active:shadow-none"
                     >
                       <span
-                        className={`relative flex w-full items-center gap-3 overflow-hidden rounded-[16px] border px-3 py-3 transition duration-250 ${
-                          isActive
-                            ? "border-[var(--brand-border-strong)] bg-[color:var(--brand-surface)] text-[var(--brand-strong)]"
-                            : "border-transparent bg-transparent text-[var(--brand-muted)] hover:border-[var(--brand-border)] hover:bg-[color:var(--brand-surface)] hover:text-[var(--brand-strong)]"
-                        }`}
+                        className={`relative flex w-full items-center gap-3 overflow-hidden rounded-[16px] border px-3 py-3 transition duration-250 ${isActive
+                          ? "border-[var(--brand-border-strong)] bg-[color:var(--brand-surface)] text-[var(--brand-strong)]"
+                          : "border-transparent bg-transparent text-[var(--brand-muted)] hover:border-[var(--brand-border)] hover:bg-[color:var(--brand-surface)] hover:text-[var(--brand-strong)]"
+                          }`}
                       >
                         {isActive && (
                           <motion.span
@@ -129,11 +204,10 @@ export function ServicesShowcase() {
                           />
                         )}
                         <span
-                          className={`relative flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition duration-300 ${
-                            isActive
-                              ? "bg-[color:color-mix(in_srgb,var(--brand-base)_10%,white_90%)]"
-                              : "bg-[color:color-mix(in_srgb,var(--background)_72%,white_28%)] group-hover:scale-105"
-                          }`}
+                          className={`relative flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition duration-300 ${isActive
+                            ? "bg-[color:color-mix(in_srgb,var(--brand-base)_10%,white_90%)]"
+                            : "bg-[color:color-mix(in_srgb,var(--background)_72%,white_28%)] group-hover:scale-105"
+                            }`}
                         >
                           <item.icon className="h-4 w-4" aria-hidden="true" />
                         </span>
@@ -184,11 +258,10 @@ export function ServicesShowcase() {
                           initial={{ opacity: 0, scale: 0.96, y: 18 }}
                           animate={{ opacity: 1, scale: 1, y: 0 }}
                           transition={{ delay: 0.1, duration: 0.42 }}
-                          className="relative flex min-h-[340px] overflow-hidden rounded-[32px] border border-[var(--brand-border)] bg-[linear-gradient(145deg,color-mix(in_srgb,var(--brand-soft)_10%,white)_0%,color-mix(in_srgb,var(--card)_97%,white_3%)_100%)] p-6 sm:p-8"
+                          className="relative flex min-h-[310px] overflow-hidden rounded-[32px] border border-[var(--brand-border)] bg-[linear-gradient(145deg,color-mix(in_srgb,var(--brand-soft)_10%,white)_0%,color-mix(in_srgb,var(--card)_97%,white_3%)_100%)] p-6 sm:p-8"
                         >
-                          <div className="absolute right-0 top-0 h-36 w-36 rounded-full bg-[radial-gradient(circle,color-mix(in_srgb,var(--brand-soft)_16%,transparent)_0%,transparent_68%)] blur-2xl" />
                           <div className="relative flex w-full items-center justify-center p-4 sm:p-6">
-                            <Image src={panel.rightImg.src} alt={panel.heading} width={panel.rightImg.width} height={panel.rightImg.height} className="h-auto max-h-[360px] w-full object-contain" priority />
+                            <Image src={panel.rightImg.src} alt={panel.heading} width={panel.rightImg.width} height={panel.rightImg.height} className="w-full object-contain" priority />
                           </div>
                         </motion.div>
                       </div>

@@ -25,7 +25,7 @@ const socialIconMap = {
 
 export function SiteFooter() {
   return (
-    <footer className="footer-shell mt-16">
+    <footer className="footer-shell mt-16 relative z-10">
       <Container className="py-12" width="wide">
         <SectionReveal onView>
         <div className="grid gap-10 sm:gap-12 lg:grid-cols-2 xl:grid-cols-[0.85fr_1fr_0.75fr_1.2fr] xl:gap-12">
