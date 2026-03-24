@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState, startTransition } from "react";
+import { useEffect, useState, startTransition, useRef } from "react";
 import Image from "next/image";
-import { Check, ChevronRight } from "lucide-react";
+import { Check, ChevronDown } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import BlurText from "@/components/animations/BlurText";
 import { Container } from "@/components/shared/container";
@@ -20,6 +20,18 @@ type ServiceUiName = (typeof servicesNavBarCompDataArr)[number]["renderUi"];
 
 export function ServicesShowcase() {
   const [activeService, setActiveService] = useState<ServiceUiName>(servicesNavBarCompDataArr[0].renderUi);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   useEffect(() => {
     const saved = window.localStorage.getItem(STORAGE_KEY) as ServiceUiName | null;
@@ -47,19 +59,52 @@ export function ServicesShowcase() {
   }, []);
 
   return (
-    <section className="relative overflow-hidden bg-[var(--background)] pt-4 pb-16 sm:pt-6 sm:pb-20 lg:pt-8 lg:pb-24">
-      <div className="absolute inset-x-0 top-0 h-48 bg-[linear-gradient(180deg,color-mix(in_srgb,var(--brand-soft)_10%,transparent),transparent)]" />
+    <section className="relative bg-[var(--background)] pt-4 pb-16 sm:pt-6 sm:pb-20 lg:pt-8 lg:pb-24">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute inset-x-0 top-0 h-48 bg-[linear-gradient(180deg,color-mix(in_srgb,var(--brand-soft)_10%,transparent),transparent)]" />
+      </div>
 
       <Container width="wide" className="max-w-[1520px]">
+        {/* Mobile custom dropdown */}
+        <div ref={dropdownRef} className="lg:hidden relative w-full mb-6 z-50">
+          <button
+            type="button"
+            onClick={() => setDropdownOpen((o) => !o)}
+            className="w-full flex items-center justify-between rounded-2xl border border-[var(--brand-border)] bg-[var(--card)] px-4 py-3 text-sm font-semibold text-[var(--brand-strong)] shadow-sm"
+          >
+            <span>{servicesNavBarCompDataArr.find((i) => i.renderUi === activeService)?.label}</span>
+            <ChevronDown className={`h-4 w-4 text-[var(--brand-muted)] transition-transform duration-200 ${dropdownOpen ? "rotate-180" : ""}`} />
+          </button>
+          {dropdownOpen && (
+            <div className="absolute top-full left-0 right-0 mt-2 rounded-2xl border border-[var(--brand-border)] bg-[var(--card)] shadow-lg overflow-hidden">
+              {servicesNavBarCompDataArr.map((item) => (
+                <button
+                  key={item.renderUi}
+                  type="button"
+                  onClick={() => { handleTabChange(item.renderUi); setDropdownOpen(false); }}
+                  className={`w-full flex items-center gap-3 px-4 py-3 text-sm font-semibold text-left transition-colors ${
+                    item.renderUi === activeService
+                      ? "bg-[color:var(--brand-surface)] text-[var(--brand-strong)]"
+                      : "text-[var(--brand-muted)] hover:bg-[color:var(--brand-surface)] hover:text-[var(--brand-strong)]"
+                  }`}
+                >
+                  <item.icon className="h-4 w-4 shrink-0" />
+                  {item.label}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
         <Tabs
           value={activeService}
           onValueChange={handleTabChange}
           orientation="vertical"
           className="flex flex-col gap-6 lg:flex-row lg:items-stretch lg:gap-8"
         >
-          {/* Vertical tab list */}
-          <SectionReveal onView className="relative z-10 w-full lg:w-[280px] xl:w-[300px] shrink-0 lg:flex lg:flex-col">
-            <div className="sticky top-24 z-20 h-full rounded-[28px] border border-[var(--brand-border)] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--card)_92%,white_8%)_0%,var(--card)_100%)] p-3 shadow-[0_20px_44px_color-mix(in_srgb,var(--brand-base)_8%,transparent)] backdrop-blur sm:p-4">
+          {/* Vertical tab list — desktop only */}
+          <SectionReveal onView className="relative z-10 hidden lg:flex lg:w-[280px] xl:w-[300px] shrink-0 lg:flex-col">
+            <div className="sticky top-24 z-20 h-full rounded-[28px] p-1 border border-[var(--brand-border)] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--card)_92%,white_8%)_0%,var(--card)_100%)] shadow-[0_20px_44px_color-mix(in_srgb,var(--brand-base)_8%,transparent)] backdrop-blur sm:p-2">
               <TabsList className="h-auto w-full flex-col gap-1.5 rounded-none bg-transparent p-0">
                 {servicesNavBarCompDataArr.map((item) => {
                   const isActive = item.renderUi === activeService;
