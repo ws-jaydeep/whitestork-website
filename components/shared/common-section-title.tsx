@@ -17,54 +17,14 @@ type CommonSectionTitleProps = {
   descriptionClassName?: string;
 };
 
-function escapeRegExp(value: string) {
-  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
-
-function renderHighlightedTitle(title: string, highlights: string[], highlightClassName?: string) {
-  if (highlights.length === 0) {
-    return title;
-  }
-
-  const matches = highlights
-    .filter(Boolean)
-    .sort((a, b) => b.length - a.length)
-    .map(escapeRegExp);
-
-  if (matches.length === 0) {
-    return title;
-  }
-
-  const parts = title.split(new RegExp(`(${matches.join("|")})`, "gi"));
-
-  return parts.map((part, index) => {
-    const isHighlight = highlights.some((highlight) => highlight.toLowerCase() === part.toLowerCase());
-
-    if (!isHighlight) {
-      return <span key={`${part}-${index}`}>{part}</span>;
-    }
-
-    return (
-      <span
-        key={`${part}-${index}`}
-        className={cn("text-[var(--brand-base)]", highlightClassName)}
-      >
-        {part}
-      </span>
-    );
-  });
-}
-
 export function CommonSectionTitle({
   title,
-  highlights = [],
   eyebrow,
   description,
   as: Heading = "h2",
   align = "center",
   className,
   titleClassName,
-  highlightClassName,
   descriptionClassName,
 }: CommonSectionTitleProps) {
   const isCentered = align === "center";
@@ -85,11 +45,11 @@ export function CommonSectionTitle({
         rootMargin="-40px"
         textAlign={isCentered ? "center" : "left"}
         className={cn(
-          "brand-title mt-3 text-balance font-[family:var(--font-heading)] text-3xl font-semibold sm:text-4xl lg:text-5xl",
+          "brand-title mt-3 text-balance font-[family:var(--font-heading)] text-3xl font-semibold text-[#419BD5] sm:text-4xl lg:text-5xl",
           titleClassName,
         )}
       >
-        {renderHighlightedTitle(title, highlights, highlightClassName)}
+        {title}
       </SplitText>
       {description ? (
         <div

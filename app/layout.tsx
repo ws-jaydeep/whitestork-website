@@ -39,7 +39,6 @@ export default function RootLayout({
           }}
         />
         <div className="app-shell relative flex min-h-screen flex-col text-foreground">
-          <AnimatedBackground />
           <SiteHeader />
           <main className="relative z-10 flex-1">{children}</main>
           <SiteFooter />

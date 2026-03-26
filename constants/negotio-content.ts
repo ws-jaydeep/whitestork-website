@@ -1,5 +1,6 @@
 export const negotioShowcaseContent = {
   videoSrc: "/video/negotio-ai-video.webm",
+  isPreNextVideo: false,
   infoBadge: "What is Negotio AI?",
   description:
     "Negotio AI is Whitestork’s AI-powered hotel bargaining platform—a smart assistant that negotiates hotel bookings for you in real time.",

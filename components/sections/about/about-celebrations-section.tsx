@@ -28,14 +28,10 @@ export function AboutCelebrationsSection() {
       <Container width="wide">
         <SectionReveal onView>
           <CommonSectionTitle
-          // eyebrow="Celebrations"
-          title="Our Team"
-          highlights={["Team"]}
-          description="Our CEO's vision is simple: to build a team so capable they can run the company better than he can. We believe in empowering people and growing together toward success."
-          className="max-w-5xl"
-          titleClassName="text-3xl sm:text-4xl lg:text-[3.4rem]"
-          descriptionClassName="max-w-3xl text-base leading-7 sm:text-lg sm:leading-8"
-        />
+            title="Our Team"
+            highlights={["Team"]}
+            description="Our CEO's vision is simple: to build a team so capable they can run the company better than he can. We believe in empowering people and growing together toward success."
+          />
         </SectionReveal>
       </Container>
 

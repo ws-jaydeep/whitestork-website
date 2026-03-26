@@ -8,8 +8,6 @@ import { ChevronDown, Download, Menu, X } from "lucide-react";
 import { headerNavigation } from "@/constants/header-footer-content";
 import { Container } from "@/components/shared/container";
 import { PillNav } from "@/components/animations/PillNav";
-import { ThemeSelector } from "@/components/theme-selector";
-import { ThemeToggle } from "@/components/theme-toggle";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -56,7 +54,6 @@ export function SiteHeader() {
               </Link>
 
               <div className="flex items-center gap-2 xl:hidden">
-                <ThemeToggle />
                 <Button
                   type="button"
                   variant="ghost"
@@ -133,7 +130,6 @@ export function SiteHeader() {
                 </nav>
 
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-                  <ThemeSelector mobile />
                   <div className="relative">
                     <button
                       type="button"
@@ -170,17 +166,7 @@ export function SiteHeader() {
         </Container>
       </header>
 
-      <div className="fixed left-5 top-7 z-[65] hidden xl:block xl:left-8">
-        <div className="brand-panel rounded-[calc(var(--theme-panel-radius)-14px)] p-2">
-          <ThemeSelector />
-        </div>
-      </div>
 
-      <div className="fixed right-5 top-7 z-[65] hidden xl:block xl:right-8">
-        <div className="brand-panel rounded-[calc(var(--theme-panel-radius)-14px)] p-2">
-          <ThemeToggle />
-        </div>
-      </div>
     </>
   );
 }

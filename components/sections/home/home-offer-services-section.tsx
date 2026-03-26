@@ -16,7 +16,7 @@ export function HomeOfferServicesSection() {
             highlights={["We", "offer"]}
           />
         </SectionReveal>
-        <div className="mx-auto max-w-2xl pb-[10vh]">
+        <div className="mx-auto max-w-6xl">
           <ScrollStack useWindowScroll>
             {Offer_Services_data.map((service) => {
               return (

@@ -255,21 +255,14 @@ const Masonry = ({
         onClick={() => setActiveItem(null)}
       >
         <div
-          className="relative inline-block overflow-visible"
+          className="relative h-[70vh] w-[min(70vw,1100px)] overflow-visible"
           onClick={e => e.stopPropagation()}
         >
-          <button
-            onClick={() => setActiveItem(null)}
-            className="absolute right-0 top-2 z-10 flex h-12 w-12 items-center justify-center rounded-full border border-white/80 bg-black/45 text-lg font-bold text-white shadow-lg backdrop-blur transition hover:bg-black/65"
-            aria-label="Close"
-          >
-            ×
-          </button>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={activeItem.img}
             alt={`Image ${activeItem.id}`}
-            className="block max-h-[85vh] max-w-[90vw] rounded-2xl object-contain"
+            className="block h-full w-full rounded-2xl object-contain"
           />
         </div>
       </div>,

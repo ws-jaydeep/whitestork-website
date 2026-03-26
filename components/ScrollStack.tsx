@@ -45,7 +45,7 @@ interface ScrollStackProps {
 const ScrollStack: React.FC<ScrollStackProps> = ({
   children,
   className = '',
-  itemDistance = 100,
+  itemDistance = 20,
   itemScale = 0.03,
   itemStackDistance = 30,
   stackPosition = '20%',

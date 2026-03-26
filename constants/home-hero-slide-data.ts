@@ -12,6 +12,7 @@ export const HERO_SLIDE_DATA = [
     title: "PlayPal Sports",
     description: "Your Ultimate Sports Ground Booking App!",
     video: "/video/playpal.webm",
+    videoPoster: playPal,
     playStoreLink:
       "https://play.google.com/store/apps/details?id=com.playpal.android",
     appStoreLink: "https://apps.apple.com/us/app/playpal-sports/id6473602475",
@@ -24,6 +25,7 @@ export const HERO_SLIDE_DATA = [
     description: "The Ultimate Influencer Marketing Platform!",
     websiteLink: "https://creatorwrk.com",
     video: "/video/creatorwrk.webm",
+    videoPoster: creatorwrk,
   },
   {
     image: pixis,
@@ -31,6 +33,7 @@ export const HERO_SLIDE_DATA = [
     title: "Pixies Gardens",
     description: "Your One-Stop Shop For Plants",
     video: "/video/pixis-garden.webm",
+    videoPoster: pixis,
     websiteLink: "https://www.pixiesgardens.com/",
   },
 ] as const;

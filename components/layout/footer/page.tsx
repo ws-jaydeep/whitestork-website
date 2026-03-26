@@ -15,6 +15,8 @@ import { footerContent } from "@/constants/header-footer-content";
 import BlurText from "@/components/animations/BlurText";
 import { Container } from "@/components/shared/container";
 import { SectionReveal } from "@/components/shared/section-reveal";
+import { ThemeSelector } from "@/components/theme-selector";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 const socialIconMap = {
   Instagram,
@@ -55,7 +57,7 @@ export function SiteFooter() {
               {footerContent.services.map((service) => (
                 <li key={service.renderUi}>
                   <Link
-                    href="/services"
+                    href={`/services?service=${service.renderUi}`}
                     className="brand-link inline-block"
                     onClick={() => window.localStorage.setItem("services-active-tab", service.renderUi)}
                   >
@@ -143,7 +145,10 @@ export function SiteFooter() {
                   <Icon className="size-4" />
                 </Link>
               );
-            })}
+            })}<div className="order-4 flex items-center gap-2">
+            <ThemeSelector />
+            <ThemeToggle />
+          </div>
           </div>
 
           <BlurText

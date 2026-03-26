@@ -4,26 +4,31 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { AppWindow, ChevronLeft, ChevronRight, Smartphone } from "lucide-react";
+import {  Globe, Smartphone, Store } from "lucide-react";
 import { Container } from "@/components/shared/container";
 import { CommonSectionTitle } from "@/components/shared/common-section-title";
 import { SectionReveal } from "@/components/shared/section-reveal";
 import { HERO_SLIDE_DATA } from "@/constants/home-hero-slide-data";
+import { CustomVideoPlayer } from "@/components/shared/custom-video-player";
+import { Tooltip } from "@/components/ui/tooltip";
 
 export function HomeProjectCarouselSection() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const activeSlide = HERO_SLIDE_DATA[activeIndex];
-  const playStoreLink = "playStoreLink" in activeSlide ? activeSlide.playStoreLink : undefined;
-  const appStoreLink = "appStoreLink" in activeSlide ? activeSlide.appStoreLink : undefined;
+  const playStoreLink =
+    "playStoreLink" in activeSlide ? activeSlide.playStoreLink : undefined;
+  const appStoreLink =
+    "appStoreLink" in activeSlide ? activeSlide.appStoreLink : undefined;
 
-  function showPrev() {
-    setActiveIndex((current) =>
-      current === 0 ? HERO_SLIDE_DATA.length - 1 : current - 1,
-    );
-  }
+  function showPreNext(e: boolean) {
+    if (e === true) {
+      setActiveIndex((current) =>
+        current === 0 ? HERO_SLIDE_DATA.length - 1 : current - 1,
+      );
+      return;
+    }
 
-  function showNext() {
     setActiveIndex((current) => (current + 1) % HERO_SLIDE_DATA.length);
   }
 
@@ -52,38 +57,19 @@ export function HomeProjectCarouselSection() {
                     transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
                     className="relative h-full"
                   >
-                    <video
-                      className="h-[180px] w-full object-contain sm:h-[220px] md:h-[250px] lg:h-full lg:min-h-[340px]"
+                    <CustomVideoPlayer
                       src={activeSlide.video}
-                      preload="metadata"
-                      autoPlay
-                      muted
-                      playsInline
-                      controls
-                      onEnded={showNext}
+                      poster={activeSlide.videoPoster}
+                      className="transition duration-700 group-hover:scale-[1.01]"
+                      isPreNextVideo={HERO_SLIDE_DATA.length > 1}
+                      onPreviousVideo={() => showPreNext(true)}
+                      onNextVideo={() => showPreNext(false)}
+                      startMuted
+                      startVolume={0.8}
                     />
-                    <div className="absolute right-3 top-3 z-20 flex items-center gap-2 sm:right-4 sm:top-4">
-                      <button
-                        type="button"
-                        onClick={showPrev}
-                        className="inline-flex size-9 items-center justify-center rounded-full border border-white/45 bg-[rgba(8,29,54,0.58)] text-white shadow-[0_12px_30px_rgba(8,29,54,0.28)] backdrop-blur-md transition hover:bg-[rgba(8,29,54,0.74)] sm:size-11"
-                        aria-label="Previous slide"
-                      >
-                        <ChevronLeft className="size-4 sm:size-5" />
-                      </button>
-                      <button
-                        type="button"
-                        onClick={showNext}
-                        className="inline-flex size-9 items-center justify-center rounded-full border border-white/45 bg-[rgba(8,29,54,0.58)] text-white shadow-[0_12px_30px_rgba(8,29,54,0.28)] backdrop-blur-md transition hover:bg-[rgba(8,29,54,0.74)] sm:size-11"
-                        aria-label="Next slide"
-                      >
-                        <ChevronRight className="size-4 sm:size-5" />
-                      </button>
-                    </div>
                   </motion.div>
                 </AnimatePresence>
               </div>
-
               <div className="flex min-h-[230px] w-full flex-col rounded-[28px] border border-[var(--brand-border)] bg-[var(--card)] p-4 shadow-[0_20px_50px_color-mix(in_srgb,var(--brand-base)_8%,transparent)] sm:min-h-[260px] sm:p-5 lg:h-full lg:min-h-[340px]">
                 <div className="flex items-center justify-between gap-4">
                   <div className="flex h-12 items-center rounded-[16px] border border-[var(--brand-border)] bg-[var(--brand-surface)] px-3 sm:h-14 sm:px-4">
@@ -94,7 +80,8 @@ export function HomeProjectCarouselSection() {
                     />
                   </div>
                   <div className="text-xs font-semibold text-[var(--brand-muted)] sm:text-sm">
-                    {String(activeIndex + 1).padStart(2, "0")} / {String(HERO_SLIDE_DATA.length).padStart(2, "0")}
+                    {String(activeIndex + 1).padStart(2, "0")} /{" "}
+                    {String(HERO_SLIDE_DATA.length).padStart(2, "0")}
                   </div>
                 </div>
 
@@ -102,7 +89,7 @@ export function HomeProjectCarouselSection() {
                   <Image
                     src={activeSlide.image}
                     alt={activeSlide.title}
-                    className="h-[68px] w-full rounded-[16px] object-cover sm:h-[88px]"
+                    className="h-[92px] w-full rounded-[16px] object-contain sm:h-[156px]"
                     priority={activeIndex === 0}
                   />
                 </div>
@@ -118,34 +105,49 @@ export function HomeProjectCarouselSection() {
 
                 <div className="mt-4 flex flex-wrap gap-2 sm:mt-5 sm:gap-3">
                   {activeSlide.websiteLink ? (
-                    <Link
-                      href={activeSlide.websiteLink}
-                      target="_blank"
-                      className="inline-flex items-center gap-2 rounded-full bg-[var(--brand-base)] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[var(--brand-strong)]"
+                    <Tooltip
+                      content="Visit Website"
+                      render={
+                        <Link
+                          href={activeSlide.websiteLink}
+                          target="_blank"
+                          className="inline-flex size-11 items-center justify-center rounded-full bg-[var(--brand-base)] text-white shadow-[0_14px_30px_color-mix(in_srgb,var(--brand-base)_24%,transparent)] transition hover:bg-[var(--brand-strong)]"
+                          aria-label="Visit Website"
+                        />
+                      }
                     >
-                      <AppWindow className="size-4" />
-                      Visit Website
-                    </Link>
+                      <Globe className="size-4" />
+                    </Tooltip>
                   ) : null}
                   {playStoreLink ? (
-                    <Link
-                      href={playStoreLink}
-                      target="_blank"
-                      className="inline-flex items-center gap-2 rounded-full border border-[var(--brand-border)] bg-[var(--brand-surface)] px-4 py-2.5 text-sm font-semibold text-[var(--brand-strong)] transition hover:border-[var(--brand-base)] hover:text-[var(--brand-base)]"
+                    <Tooltip
+                      content="Play Store"
+                      render={
+                        <Link
+                          href={playStoreLink}
+                          target="_blank"
+                          className="inline-flex size-11 items-center justify-center rounded-full bg-[var(--brand-base)] text-white shadow-[0_14px_30px_color-mix(in_srgb,var(--brand-base)_24%,transparent)] transition hover:bg-[var(--brand-strong)]"
+                          aria-label="Play Store"
+                        />
+                      }
                     >
-                      <Smartphone className="size-4" />
-                      Play Store
-                    </Link>
+                      <Smartphone className="ml-0.5 size-4" />
+                    </Tooltip>
                   ) : null}
                   {appStoreLink ? (
-                    <Link
-                      href={appStoreLink}
-                      target="_blank"
-                      className="inline-flex items-center gap-2 rounded-full border border-[var(--brand-border)] bg-[var(--brand-surface)] px-4 py-2.5 text-sm font-semibold text-[var(--brand-strong)] transition hover:border-[var(--brand-base)] hover:text-[var(--brand-base)]"
+                    <Tooltip
+                      content="App Store"
+                      render={
+                        <Link
+                          href={appStoreLink}
+                          target="_blank"
+                          className="inline-flex size-11 items-center justify-center rounded-full bg-[var(--brand-base)] text-white shadow-[0_14px_30px_color-mix(in_srgb,var(--brand-base)_24%,transparent)] transition hover:bg-[var(--brand-strong)]"
+                          aria-label="App Store"
+                        />
+                      }
                     >
-                      <Smartphone className="size-4" />
-                      App Store
-                    </Link>
+                      <Store className="size-4" />
+                    </Tooltip>
                   ) : null}
                 </div>
 

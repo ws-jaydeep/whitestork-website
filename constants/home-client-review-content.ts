@@ -32,4 +32,5 @@ export const Client_Story_Data: ClientReviewItem[] = [
     image: clientRobert,
     logo: QualityFoodLogo,
   },
+  
 ];
