@@ -4,7 +4,7 @@ import { startTransition, useEffect, useState } from "react";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { Check } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, type Variants } from "framer-motion";
 import { Container } from "@/components/shared/container";
 import { SectionReveal } from "@/components/shared/section-reveal";
 import { UiSelect } from "@/components/ui/select";
@@ -23,12 +23,14 @@ const validServiceNames = new Set<ServiceUiName>(
   servicesNavBarCompDataArr.map((item) => item.renderUi)
 );
 
+const revealEase = [0.22, 1, 0.36, 1] as const;
+
 function getValidServiceName(value: string | null): ServiceUiName | null {
   if (!value) return null;
   return validServiceNames.has(value as ServiceUiName) ? (value as ServiceUiName) : null;
 }
 
-const contentListVariants = {
+const contentListVariants: Variants = {
   hidden: {},
   show: {
     transition: {
@@ -38,13 +40,13 @@ const contentListVariants = {
   },
 };
 
-const contentItemVariants = {
+const contentItemVariants: Variants = {
   hidden: { opacity: 0, y: 18, filter: "blur(12px)" },
   show: {
     opacity: 1,
     y: 0,
     filter: "blur(0px)",
-    transition: { duration: 0.42, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.42, ease: revealEase },
   },
 };
 

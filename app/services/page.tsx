@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { CommonPageHeader } from "@/components/shared/common-page-header";
 import { ServicesShowcase } from "@/components/sections/services/services-showcase";
 import { MetaData_Services } from "@/constants/metadata";
@@ -10,7 +11,9 @@ export default function ServicesPage() {
   return (
     <>
       <CommonPageHeader {...pageHeaderContent.services} />
-      <ServicesShowcase />
+      <Suspense fallback={null}>
+        <ServicesShowcase />
+      </Suspense>
     </>
   );
 }

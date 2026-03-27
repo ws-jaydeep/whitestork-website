@@ -59,7 +59,6 @@ export function HomeProjectCarouselSection() {
                   >
                     <CustomVideoPlayer
                       src={activeSlide.video}
-                      poster={activeSlide.videoPoster}
                       className="transition duration-700 group-hover:scale-[1.01]"
                       isPreNextVideo={HERO_SLIDE_DATA.length > 1}
                       onPreviousVideo={() => showPreNext(true)}
