@@ -28,9 +28,8 @@ export function NegotioShowcaseSection() {
               <div className="relative overflow-hidden rounded-[28px] border border-[color:color-mix(in_srgb,var(--brand-soft)_18%,var(--brand-border))] bg-[color:var(--brand-surface)]">
                 <CustomVideoPlayer
                   src={negotioShowcaseContent.videoSrc}
-                  poster={negotioShowcaseContent.videoPoster}
                   isPreNextVideo={negotioShowcaseContent.isPreNextVideo}
-                  className="transition duration-700 group-hover:scale-[1.01]"
+                  className="transition duration-700"
                   startMuted
                   startVolume={0.8}
                 />
@@ -41,7 +40,7 @@ export function NegotioShowcaseSection() {
             <div className="relative h-full overflow-hidden rounded-[36px] border border-[var(--brand-border)] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--card)_98%,white_2%)_0%,var(--card)_100%)] p-6 shadow-[0_28px_72px_color-mix(in_srgb,var(--brand-base)_8%,transparent)] sm:p-8">
               <div className="absolute right-0 top-0 h-40 w-40 rounded-full bg-[radial-gradient(circle,color-mix(in_srgb,var(--brand-soft)_14%,transparent)_0%,transparent_72%)] blur-3xl" />
               <div className="relative">
-                <div className="inline-flex items-center gap-2 rounded-full bg-[color:color-mix(in_srgb,var(--brand-base)_12%,white_88%)] px-3 py-1.5 text-sm font-semibold text-[var(--brand-base)]">
+                <div className="inline-flex items-center gap-2 rounded-full border border-[var(--soft-badge-border)] bg-[var(--soft-badge-surface)] px-3 py-1.5 text-sm font-semibold text-[var(--soft-badge-color)]">
                   <Bot className="size-4" />
                   {negotioShowcaseContent.infoBadge}
                 </div>
@@ -53,7 +52,7 @@ export function NegotioShowcaseSection() {
                   className="mt-6 !block text-base leading-8 text-[var(--brand-muted)]"
                 />
 
-                <div className="mt-8 rounded-[28px] border border-[color:color-mix(in_srgb,var(--brand-soft)_18%,var(--brand-border))] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--brand-surface)_82%,white_18%)_0%,color-mix(in_srgb,var(--card)_96%,white_4%)_100%)] p-5">
+                <div className="mt-8 rounded-[28px] border border-[color:color-mix(in_srgb,var(--brand-soft)_18%,var(--brand-border))] bg-[linear-gradient(180deg,var(--chip-surface)_0%,color-mix(in_srgb,var(--card)_96%,transparent)_100%)] p-5">
                   <div className="flex items-center gap-2 text-[var(--brand-strong)]">
                     <ShieldCheck className="size-5 text-[var(--brand-base)]" />
                     <BlurText

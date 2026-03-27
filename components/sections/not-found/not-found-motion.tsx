@@ -37,7 +37,7 @@ export function NotFoundMotion() {
             transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
           >
             <motion.span
-              className="block font-[family:var(--font-heading)] font-semibold leading-none"
+              className="block font-semibold leading-none"
               style={{
                 fontSize: "clamp(100px, 18vw, 180px)",
                 background: "linear-gradient(135deg, var(--brand-strong) 0%, var(--brand-base) 55%, var(--brand-soft) 100%)",
@@ -71,7 +71,7 @@ export function NotFoundMotion() {
             <SplitText
               text="Looks like this page flew away"
               tag="h1"
-              className="font-[family:var(--font-heading)] text-2xl font-semibold text-[var(--brand-strong)] sm:text-3xl"
+              className="text-2xl font-semibold text-[var(--brand-strong)] sm:text-3xl"
               splitType="chars"
               delay={28}
               duration={0.7}

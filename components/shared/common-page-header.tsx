@@ -112,7 +112,7 @@ export function CommonPageHeader({
           />
           <div className="relative">
             <h1
-              className="animate-page-header-title font-[family:var(--font-heading)] text-3xl font-semibold text-[var(--brand-strong)] sm:text-4xl lg:text-5xl xl:text-[3.7rem]"
+              className="animate-page-header-title text-3xl font-semibold text-[var(--brand-strong)] sm:text-4xl lg:text-5xl xl:text-[3.7rem]"
               style={{ letterSpacing: "var(--theme-heading-spacing)" }}
             >
               {title}

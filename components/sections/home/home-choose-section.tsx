@@ -32,7 +32,7 @@ function ChooseRightCard({
           text={title}
           animateBy="words"
           delay={24}
-          className="font-[family:var(--font-heading)] text-2xl font-semibold text-[var(--brand-strong)]"
+          className="text-2xl font-semibold text-[var(--brand-strong)]"
         />
         <BlurText
           as="p"

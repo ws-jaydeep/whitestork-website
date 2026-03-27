@@ -45,7 +45,7 @@ export function CommonSectionTitle({
         rootMargin="-40px"
         textAlign={isCentered ? "center" : "left"}
         className={cn(
-          "brand-title mt-3 text-balance font-[family:var(--font-heading)] text-3xl font-semibold text-[#419BD5] sm:text-4xl lg:text-5xl",
+          "brand-title mt-3 text-balance text-3xl font-semibold text-[var(--brand-base)] sm:text-4xl lg:text-5xl",
           titleClassName,
         )}
       >

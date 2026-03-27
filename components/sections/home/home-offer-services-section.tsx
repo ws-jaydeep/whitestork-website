@@ -24,11 +24,11 @@ export function HomeOfferServicesSection() {
                   <article className="relative h-full overflow-hidden rounded-[28px] border border-[var(--brand-border)] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--card)_98%,white_2%)_0%,color-mix(in_srgb,var(--brand-surface)_92%,white_8%)_100%)] p-5 shadow-[0_18px_48px_color-mix(in_srgb,var(--brand-base)_10%,transparent)] sm:rounded-[32px]">
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,color-mix(in_srgb,var(--brand-soft)_14%,transparent),transparent_56%)]" />
                     <div className="relative flex h-full flex-col">
-                      <div className="inline-flex size-11 items-center justify-center rounded-full bg-[color:color-mix(in_srgb,var(--brand-base)_12%,white_88%)] text-sm font-semibold text-[var(--brand-base)] sm:size-12 sm:text-base">
+                      <div className="inline-flex size-11 items-center justify-center rounded-full border border-[var(--service-index-border)] bg-[var(--service-index-surface)] text-sm font-semibold text-[var(--service-index-color)] shadow-[0_10px_24px_color-mix(in_srgb,var(--brand-base)_12%,transparent)] sm:size-12 sm:text-base">
                         {service.id}
                       </div>
                       <div className="mt-5 space-y-1">
-                        <p className="font-[family:var(--font-heading)] text-[1.4rem] font-semibold leading-tight text-[var(--brand-strong)] sm:text-[1.7rem]">
+                        <p className="brand-title text-[1.4rem] font-semibold leading-tight text-[var(--brand-strong)] sm:text-[1.7rem]">
                           {service.title}
                         </p>
                       </div>

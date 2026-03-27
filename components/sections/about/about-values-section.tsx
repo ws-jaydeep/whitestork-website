@@ -28,7 +28,7 @@ function AboutValueCard({
           text={title}
           animateBy="words"
           delay={28}
-          className="brand-title mt-6 font-[family:var(--font-heading)] text-2xl font-semibold sm:text-3xl"
+          className="brand-title mt-6 text-2xl font-semibold sm:text-3xl"
         />
         <ul className="mt-5 space-y-3 text-base leading-7 text-[var(--brand-strong)] sm:text-lg sm:leading-8">
           {points.map((point) => (

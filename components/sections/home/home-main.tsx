@@ -25,7 +25,7 @@ export default function HomeMain() {
         <div className="grid items-center gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
           <SectionReveal className="relative z-10" onView>
             <div
-              className="mt-5 font-[family:var(--font-heading)] text-3xl font-semibold leading-[1.02] text-[var(--brand-strong)] sm:text-4xl lg:text-5xl"
+              className="mt-5 text-3xl font-semibold leading-[1.02] text-[var(--brand-strong)] sm:text-4xl lg:text-5xl"
               style={{ letterSpacing: "var(--theme-heading-spacing)" }}
             >
               <BlurText

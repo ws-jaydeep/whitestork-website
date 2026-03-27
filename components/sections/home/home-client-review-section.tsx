@@ -45,7 +45,7 @@ function ClientReviewCard({ item }: { item: ClientReviewItem }) {
           </div>
         </div>
 
-        <h3 className="mt-8 font-[family:var(--font-heading)] text-[1.75rem] font-semibold leading-tight text-[var(--brand-strong)] sm:text-[2rem]">
+        <h3 className="mt-8 text-[1.75rem] font-semibold leading-tight text-[var(--brand-strong)] sm:text-[2rem]">
           {item.title}
         </h3>
 
@@ -64,7 +64,7 @@ function ClientReviewCard({ item }: { item: ClientReviewItem }) {
             />
           </div>
           <div className="min-w-0">
-            <p className="font-[family:var(--font-heading)] text-lg font-semibold text-[var(--brand-strong)]">
+            <p className="brand-title text-lg font-semibold text-[var(--brand-strong)]">
               {item.name}
             </p>
             <p className="text-sm text-[var(--brand-muted)]">{item.role}</p>

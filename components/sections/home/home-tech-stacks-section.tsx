@@ -69,8 +69,6 @@ export function HomeTechStacksSection() {
 
         <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-6">
           {Tech_Stacks_Data.map((stack, index) => {
-            const Icon = stackIcons[stack.title] ?? Code2;
-
             return (
               <SectionReveal
                 key={stack.title}
@@ -83,7 +81,7 @@ export function HomeTechStacksSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.2 }}
                   transition={{
-                    duration: 0.45,
+                    duration: 0.05,
                     delay: index * 0.06,
                     ease: [0.22, 1, 0.36, 1],
                   }}
@@ -95,12 +93,9 @@ export function HomeTechStacksSection() {
 
                   <div className="relative z-[1] flex items-start justify-between gap-4">
                     <div className="space-y-4">
-                      {/* <div className="inline-flex size-12 items-center justify-center rounded-2xl border border-[var(--brand-border)] bg-[color:color-mix(in_srgb,var(--brand-base)_10%,white_90%)] text-[var(--brand-base)] shadow-[0_14px_28px_color-mix(in_srgb,var(--brand-base)_12%,transparent)]">
-                        <Icon className="size-5" />
-                      </div> */}
                       <div>
                        
-                        <h3 className="mt-3 font-[family:var(--font-heading)] text-[1.55rem] font-semibold leading-tight text-[var(--brand-strong)] sm:text-[1.85rem]">
+                        <h3 className="mt-3 text-[1.55rem] font-semibold leading-tight text-[var(--brand-strong)] sm:text-[1.85rem]">
                           {stack.title}
                         </h3>
                         <p className="mt-3 max-w-[28rem] text-sm leading-7 text-[var(--brand-muted)] sm:text-[0.98rem]">
@@ -109,7 +104,7 @@ export function HomeTechStacksSection() {
                       </div>
                     </div>
 
-                    <div className="relative h-20 w-20 shrink-0 rounded-[24px] border border-[var(--brand-border)] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--brand-surface)_96%,white_4%)_0%,white_100%)] p-3 shadow-[0_16px_34px_color-mix(in_srgb,var(--brand-base)_8%,transparent)] sm:h-24 sm:w-24">
+                    <div className="relative h-20 w-20 shrink-0 rounded-[24px] border border-[var(--chip-border)] bg-[linear-gradient(180deg,var(--icon-panel-start)_0%,var(--icon-panel-end)_100%)] p-3 shadow-[0_16px_34px_color-mix(in_srgb,var(--brand-base)_8%,transparent)] sm:h-24 sm:w-24">
                       <Image
                         src={stack.image}
                         alt={stack.title}
@@ -124,7 +119,7 @@ export function HomeTechStacksSection() {
                     {stack.items.map((item) => (
                       <div
                         key={item}
-                        className="inline-flex min-h-12 items-center rounded-2xl border border-[var(--brand-border)] bg-[color:color-mix(in_srgb,var(--brand-surface)_92%,white_8%)] px-4 py-3 text-sm font-medium leading-5 text-[var(--brand-strong)] transition duration-300 group-hover:border-[color:color-mix(in_srgb,var(--brand-base)_16%,var(--brand-border))] group-hover:bg-[color:color-mix(in_srgb,var(--brand-base)_6%,white_94%)] sm:text-[0.95rem]"
+                        className="inline-flex min-h-12 items-center rounded-2xl border border-[var(--chip-border)] bg-[var(--chip-surface)] px-4 py-3 text-sm font-medium leading-5 text-[var(--chip-color)] transition duration-300 group-hover:border-[var(--chip-hover-border)] group-hover:bg-[var(--chip-hover-surface)] sm:text-[0.95rem]"
                       >
                         {renderItemLabel(item)}
                       </div>

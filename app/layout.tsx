@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { SiteFooter } from "@/components/layout/footer";
 import { SiteHeader } from "@/components/layout/header";
 import { ScrollToTopButton } from "@/components/shared/scroll-to-top-button";
-import { AnimatedBackground } from "@/components/shared/animated-background";
 import { DEFAULT_SITE_THEME } from "@/constants/themes";
 import "./globals.css";
 

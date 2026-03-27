@@ -57,6 +57,7 @@
   --theme-blur: 24px;
   --theme-heading-spacing: -0.03em;
   --theme-eyebrow-spacing: 0.34em;
+  --page-background: #f4f8fd;
   --background: transparent;
   --foreground: #113154;
   --card: #ffffff;
@@ -111,6 +112,50 @@
   --hero-chip-surface: rgba(255, 255, 255, 0.78);
   --hero-chip-border: rgba(255, 255, 255, 0.7);
   --hero-chip-shadow: 0 20px 40px rgba(18, 54, 111, 0.08);
+  --trusted-logo-card-border: color-mix(in srgb, var(--brand-soft) 24%, white 12%);
+  --trusted-logo-card-start: color-mix(in srgb, var(--brand-strong) 92%, black 8%);
+  --trusted-logo-card-end: color-mix(in srgb, var(--brand-base) 88%, black 12%);
+  --trusted-logo-card-shadow: 0 18px 40px color-mix(in srgb, var(--brand-base) 18%, transparent);
+  --soft-badge-surface: color-mix(in srgb, var(--brand-base) 12%, white 88%);
+  --soft-badge-border: color-mix(in srgb, var(--brand-base) 12%, transparent);
+  --soft-badge-color: var(--brand-base);
+  --soft-badge-hover-surface: color-mix(in srgb, var(--brand-base) 16%, white 84%);
+  --chip-surface: color-mix(in srgb, var(--brand-surface) 82%, white 18%);
+  --chip-border: var(--brand-border);
+  --chip-color: var(--brand-strong);
+  --chip-hover-surface: color-mix(in srgb, var(--brand-base) 6%, white 94%);
+  --chip-hover-border: color-mix(in srgb, var(--brand-base) 16%, var(--brand-border));
+  --chip-shadow: 0 10px 30px color-mix(in srgb, var(--brand-base) 8%, transparent);
+  --icon-panel-start: color-mix(in srgb, var(--brand-surface) 96%, white 4%);
+  --icon-panel-end: white;
+  --project-action-surface: var(--brand-base);
+  --project-action-surface-hover: var(--brand-strong);
+  --project-action-color: white;
+  --services-panel-mobile-overlay:
+    linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(248,252,255,0.64) 34%, rgba(252,254,255,0.94) 68%, rgba(255,255,255,0.98) 100%);
+  --services-panel-active-overlay:
+    linear-gradient(90deg, rgba(255,255,255,0.98) 0%, rgba(249,252,255,0.96) 48%, rgba(255,255,255,0.56) 74%, rgba(255,255,255,0.18) 100%);
+  --services-panel-collapsed-overlay:
+    linear-gradient(180deg, rgba(255,255,255,0.16) 0%, rgba(244,249,253,0.9) 100%);
+  --portfolio-index-border: color-mix(in srgb, var(--brand-strong) 28%, black);
+  --portfolio-index-surface: color-mix(in srgb, var(--brand-strong) 92%, black);
+  --portfolio-index-shadow: 0 14px 32px color-mix(in srgb, var(--brand-strong) 20%, transparent);
+  --portfolio-index-color: white;
+  --portfolio-overlay-border: color-mix(in srgb, var(--brand-soft) 22%, white);
+  --portfolio-overlay-start: color-mix(in srgb, var(--brand-strong) 94%, black);
+  --portfolio-overlay-end: color-mix(in srgb, var(--brand-strong) 88%, black);
+  --portfolio-overlay-chip-border: rgba(255, 255, 255, 0.2);
+  --portfolio-overlay-chip-surface: rgba(255, 255, 255, 0.1);
+  --portfolio-overlay-button-primary-surface: white;
+  --portfolio-overlay-button-primary-hover: rgba(255, 255, 255, 0.9);
+  --portfolio-overlay-button-primary-color: var(--brand-strong);
+  --portfolio-overlay-button-secondary-border: rgba(255, 255, 255, 0.2);
+  --portfolio-overlay-button-secondary-surface: rgba(255, 255, 255, 0.08);
+  --portfolio-overlay-button-secondary-hover: rgba(255, 255, 255, 0.14);
+  --portfolio-overlay-button-secondary-color: white;
+  --service-index-surface: color-mix(in srgb, var(--brand-base) 12%, white 88%);
+  --service-index-color: var(--brand-base);
+  --service-index-border: color-mix(in srgb, var(--brand-base) 12%, transparent);
   --footer-border: #d6e6f3;
   --footer-logo-surface: #ffffff;
   --footer-logo-border: rgba(255, 255, 255, 0.9);
@@ -131,6 +176,7 @@
 }
 
 .dark {
+  --page-background: #0b1421;
   --background: #0d1522;
   --foreground: #eaf3ff;
   --card: #132033;
@@ -184,6 +230,50 @@
   --hero-chip-surface: rgba(18, 33, 52, 0.78);
   --hero-chip-border: rgba(121, 167, 210, 0.18);
   --hero-chip-shadow: 0 20px 40px rgba(0, 0, 0, 0.24);
+  --trusted-logo-card-border: color-mix(in srgb, var(--brand-soft) 18%, var(--brand-border));
+  --trusted-logo-card-start: color-mix(in srgb, var(--card) 92%, black 8%);
+  --trusted-logo-card-end: color-mix(in srgb, var(--brand-surface-strong) 88%, black 12%);
+  --trusted-logo-card-shadow: 0 18px 40px color-mix(in srgb, black 28%, transparent);
+  --soft-badge-surface: color-mix(in srgb, var(--brand-base) 16%, var(--card));
+  --soft-badge-border: color-mix(in srgb, var(--brand-soft) 20%, var(--brand-border));
+  --soft-badge-color: var(--brand-strong);
+  --soft-badge-hover-surface: color-mix(in srgb, var(--brand-base) 24%, var(--card));
+  --chip-surface: color-mix(in srgb, var(--brand-surface-strong) 88%, black 12%);
+  --chip-border: color-mix(in srgb, var(--brand-soft) 16%, var(--brand-border));
+  --chip-color: var(--brand-strong);
+  --chip-hover-surface: color-mix(in srgb, var(--brand-base) 16%, var(--card));
+  --chip-hover-border: color-mix(in srgb, var(--brand-soft) 24%, var(--brand-border));
+  --chip-shadow: 0 10px 30px color-mix(in srgb, black 18%, transparent);
+  --icon-panel-start: color-mix(in srgb, var(--card) 94%, black 6%);
+  --icon-panel-end: color-mix(in srgb, var(--brand-surface-strong) 92%, black 8%);
+  --project-action-surface: color-mix(in srgb, var(--brand-base) 78%, var(--card));
+  --project-action-surface-hover: color-mix(in srgb, var(--brand-soft) 78%, var(--card));
+  --project-action-color: var(--brand-strong);
+  --services-panel-mobile-overlay:
+    linear-gradient(180deg, color-mix(in srgb, var(--card) 10%, transparent) 0%, color-mix(in srgb, var(--brand-surface-strong) 78%, transparent) 34%, color-mix(in srgb, var(--card) 96%, transparent) 68%, color-mix(in srgb, var(--brand-surface-strong) 98%, transparent) 100%);
+  --services-panel-active-overlay:
+    linear-gradient(90deg, color-mix(in srgb, var(--card) 98%, transparent) 0%, color-mix(in srgb, var(--brand-surface-strong) 96%, transparent) 48%, color-mix(in srgb, var(--brand-surface) 54%, transparent) 74%, transparent 100%);
+  --services-panel-collapsed-overlay:
+    linear-gradient(180deg, color-mix(in srgb, var(--card) 14%, transparent) 0%, color-mix(in srgb, var(--brand-surface-strong) 84%, transparent) 100%);
+  --portfolio-index-border: color-mix(in srgb, var(--brand-soft) 24%, var(--brand-border));
+  --portfolio-index-surface: color-mix(in srgb, var(--card) 94%, black 6%);
+  --portfolio-index-shadow: 0 14px 32px color-mix(in srgb, black 28%, transparent);
+  --portfolio-index-color: var(--brand-strong);
+  --portfolio-overlay-border: color-mix(in srgb, var(--brand-soft) 24%, var(--brand-border));
+  --portfolio-overlay-start: color-mix(in srgb, var(--card) 96%, black 4%);
+  --portfolio-overlay-end: color-mix(in srgb, var(--brand-surface-strong) 92%, black 8%);
+  --portfolio-overlay-chip-border: color-mix(in srgb, var(--brand-soft) 18%, var(--brand-border));
+  --portfolio-overlay-chip-surface: color-mix(in srgb, var(--brand-base) 16%, var(--card));
+  --portfolio-overlay-button-primary-surface: color-mix(in srgb, var(--brand-base) 76%, var(--card));
+  --portfolio-overlay-button-primary-hover: color-mix(in srgb, var(--brand-soft) 78%, var(--card));
+  --portfolio-overlay-button-primary-color: var(--brand-strong);
+  --portfolio-overlay-button-secondary-border: color-mix(in srgb, var(--brand-soft) 18%, var(--brand-border));
+  --portfolio-overlay-button-secondary-surface: color-mix(in srgb, var(--brand-base) 12%, var(--card));
+  --portfolio-overlay-button-secondary-hover: color-mix(in srgb, var(--brand-base) 18%, var(--card));
+  --portfolio-overlay-button-secondary-color: var(--brand-strong);
+  --service-index-surface: color-mix(in srgb, var(--brand-base) 18%, var(--card));
+  --service-index-color: var(--brand-strong);
+  --service-index-border: color-mix(in srgb, var(--brand-soft) 20%, var(--brand-border));
   --footer-border: rgba(121, 167, 210, 0.18);
   --footer-logo-surface: rgba(255, 255, 255, 0.96);
   --footer-logo-border: rgba(255, 255, 255, 0.12);
@@ -575,12 +665,21 @@ html.dark[data-theme="slate"] {
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply text-foreground;
-    background: transparent;
-  }
   html {
     @apply font-sans;
+  }
+  body {
+    @apply text-foreground;
+    background: var(--page-background);
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    letter-spacing: var(--theme-heading-spacing);
   }
   a,
   button {
@@ -597,6 +696,7 @@ html.dark[data-theme="slate"] {
   }
 
   .brand-title {
+    font-family: var(--font-display);
     color: var(--brand-strong);
     letter-spacing: var(--theme-heading-spacing);
   }

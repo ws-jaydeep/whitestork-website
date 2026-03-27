@@ -112,7 +112,7 @@ export function AboutWorkVibeSection() {
                     text={activeItem.title}
                     animateBy="words"
                     delay={28}
-                    className="mt-2 font-[family:var(--font-heading)] text-2xl font-semibold text-white sm:text-3xl"
+                    className="mt-2 text-2xl font-semibold text-white sm:text-3xl"
                   />
                 </div>
 

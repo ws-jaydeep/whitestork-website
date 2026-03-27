@@ -65,7 +65,7 @@ const trustedLogos = [
 
 function LogoCard({ src, alt, width, height }: (typeof trustedLogos)[number]) {
   return (
-    <div className="mx-3 inline-flex h-24 min-w-[220px] items-center justify-center rounded-[24px] border border-[color:color-mix(in_srgb,var(--brand-soft)_24%,white_12%)] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--brand-strong)_92%,black_8%)_0%,color-mix(in_srgb,var(--brand-base)_88%,black_12%)_100%)] px-7 shadow-[0_18px_40px_color-mix(in_srgb,var(--brand-base)_18%,transparent)]">
+    <div className="mx-3 inline-flex h-24 min-w-[220px] items-center justify-center rounded-[24px] border border-[var(--trusted-logo-card-border)] bg-[linear-gradient(180deg,var(--trusted-logo-card-start)_0%,var(--trusted-logo-card-end)_100%)] px-7 shadow-[var(--trusted-logo-card-shadow)]">
       <Image
         src={src}
         alt={alt}
@@ -86,7 +86,7 @@ export function HomeTrustedSection() {
     .map((logo) => <LogoCard key={logo.src} {...logo} />);
 
   return (
-    <section className="relative overflow-hidden pt-16 pb-6 sm:pt-20 sm:pb-8 lg:pt-18 lg:pb-8">
+    <section className="relative overflow-hidden">
       <Container width="wide" className="relative">
         <SectionReveal className="mx-auto max-w-3xl text-center" onView>
           <CommonSectionTitle
@@ -100,7 +100,7 @@ export function HomeTrustedSection() {
         delay={0.08}
         onView
       >
-        <div className="w-full border-y border-[color:color-mix(in_srgb,var(--brand-soft)_22%,var(--brand-border))] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--background)_96%,white_4%)_0%,color-mix(in_srgb,var(--card)_94%,white_6%)_100%)] py-6 shadow-[0_22px_60px_color-mix(in_srgb,var(--brand-base)_8%,transparent)]">
+        <div className="w-full  border-[color:color-mix(in_srgb,var(--brand-soft)_22%,var(--brand-border))] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--brand-surface)_80%,transparent)_0%,color-mix(in_srgb,var(--card)_92%,transparent)_100%)] shadow-[0_22px_60px_color-mix(in_srgb,var(--brand-base)_8%,transparent)]">
           <ScrollVelocity
             texts={[firstRow, secondRow]}
             velocity={24}

@@ -4,13 +4,13 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  border: 1px solid var(--brand-border);
-  border-radius: 32px;
-  background: linear-gradient(
+  /* border: 1px solid var(--brand-border);
+  border-radius: 32px; */
+  /* background: linear-gradient(
     180deg,
     color-mix(in srgb, var(--brand-base) 10%, var(--card)) 0%,
     color-mix(in srgb, var(--brand-soft) 16%, var(--brand-surface)) 100%
-  );
+  ); */
   box-shadow: 0 28px 72px color-mix(in srgb, var(--brand-base) 10%, transparent);
   overflow: hidden;
 }

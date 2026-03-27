@@ -70,7 +70,7 @@ function ServiceActiveContent({
       >
         <motion.h2
           variants={contentItemVariants}
-          className="font-[family:var(--font-heading)] text-[1.95rem] font-semibold leading-[0.98] text-[var(--brand-strong)] sm:text-[2.1rem]"
+          className="text-[1.95rem] font-semibold leading-[0.98] text-[var(--brand-strong)] sm:text-[2.1rem]"
         >
           {panel.heading}
         </motion.h2>
@@ -113,7 +113,7 @@ function ServiceActiveContent({
           {visibleTags.map((service) => (
             <span
               key={service.lable}
-              className="inline-flex items-center gap-2 rounded-full border border-[var(--brand-border)] bg-[color:color-mix(in_srgb,var(--brand-surface)_82%,white_18%)] px-3.5 py-2 text-sm font-medium text-[var(--brand-strong)] shadow-[0_10px_30px_rgba(18,58,99,0.06)] backdrop-blur"
+              className="inline-flex items-center gap-2 rounded-full border border-[var(--chip-border)] bg-[var(--chip-surface)] px-3.5 py-2 text-sm font-medium text-[var(--chip-color)] shadow-[var(--chip-shadow)] backdrop-blur"
             >
               <Check className="h-3.5 w-3.5 shrink-0 text-[var(--brand-base)]" />
               <span>{service.lable}</span>
@@ -135,7 +135,7 @@ function ServiceActiveContent({
       <div className="w-full pr-[40%] xl:pr-[42%]">
         <motion.h2
           variants={contentItemVariants}
-          className="font-[family:var(--font-heading)] text-[2rem] font-semibold leading-[0.98] text-[var(--brand-strong)] xl:text-[2.45rem]"
+          className="text-[2rem] font-semibold leading-[0.98] text-[var(--brand-strong)] xl:text-[2.45rem]"
         >
           {panel.heading}
         </motion.h2>
@@ -166,7 +166,7 @@ function ServiceActiveContent({
         {visibleTags.map((service) => (
           <span
             key={`${index}-${service.lable}`}
-            className="inline-flex items-center gap-2 rounded-full border border-[var(--brand-border)] bg-[color:color-mix(in_srgb,var(--brand-surface)_82%,white_18%)] px-3.5 py-2 text-sm font-medium text-[var(--brand-strong)] shadow-[0_10px_30px_rgba(18,58,99,0.06)] backdrop-blur"
+            className="inline-flex items-center gap-2 rounded-full border border-[var(--chip-border)] bg-[var(--chip-surface)] px-3.5 py-2 text-sm font-medium text-[var(--chip-color)] shadow-[var(--chip-shadow)] backdrop-blur"
           >
             <Check className="h-3.5 w-3.5 shrink-0 text-[var(--brand-base)]" />
             <span>{service.lable}</span>
@@ -227,7 +227,7 @@ export function ServicesShowcase() {
             className="relative overflow-hidden rounded-[34px] border border-[var(--brand-border)] bg-[linear-gradient(145deg,color-mix(in_srgb,var(--card)_94%,white_6%)_0%,color-mix(in_srgb,var(--brand-surface)_88%,white_12%)_52%,color-mix(in_srgb,var(--secondary)_72%,white_28%)_100%)] shadow-[var(--brand-shadow-strong)]"
           >
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,color-mix(in_srgb,var(--brand-soft)_18%,transparent),transparent_44%)]" />
-            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.08)_0%,rgba(248,252,255,0.64)_34%,rgba(252,254,255,0.94)_68%,rgba(255,255,255,0.98)_100%)]" />
+            <div className="absolute inset-0 bg-[image:var(--services-panel-mobile-overlay)]" />
             <AnimatePresence mode="wait">
               <ServiceActiveContent key={activePanel.uiName} panel={activePanel} index={renderUiCompDataArr.findIndex((panel) => panel.uiName === activePanel.uiName)} isMobile />
             </AnimatePresence>
@@ -253,24 +253,21 @@ export function ServicesShowcase() {
                   className={`group relative min-w-0 overflow-hidden rounded-[38px] border border-[var(--brand-border)] bg-[linear-gradient(145deg,color-mix(in_srgb,var(--card)_94%,white_6%)_0%,color-mix(in_srgb,var(--brand-surface)_88%,white_12%)_52%,color-mix(in_srgb,var(--secondary)_72%,white_28%)_100%)] shadow-[var(--brand-shadow)] outline-none ${isActive ? "flex-[6.5] cursor-default" : "flex-[0.9] cursor-pointer"}`}
                 >
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,color-mix(in_srgb,var(--brand-soft)_18%,transparent),transparent_40%)]" />
-                  <div
-                    className={`absolute transition-all duration-500 ${isActive
-                      ? "right-3 top-3 h-[30%] w-[24%] xl:right-4 xl:top-4 xl:h-[34%] xl:w-[27%]"
-                      : "inset-y-0 right-0 w-full"
-                      }`}
-                  >
-                    <Image
-                      src={panel.rightImg.src}
-                      alt={panel.heading}
-                      fill
-                      sizes={isActive ? "(min-width: 1024px) 60vw, 100vw" : "(min-width: 1024px) 12vw, 100vw"}
-                      className={`object-contain transition duration-500 ${isActive ? "object-top-right scale-100 p-1 opacity-95" : "object-right-bottom scale-125 p-3 opacity-55"}`}
-                    />
-                  </div>
+                  {isActive ? (
+                    <div className="absolute right-3 top-3 h-[30%] w-[24%] transition-all duration-500 xl:right-4 xl:top-4 xl:h-[34%] xl:w-[27%]">
+                      <Image
+                        src={panel.rightImg.src}
+                        alt={panel.heading}
+                        fill
+                        sizes="(min-width: 1024px) 60vw, 100vw"
+                        className="object-contain object-top-right scale-100 p-1 opacity-95 transition duration-500"
+                      />
+                    </div>
+                  ) : null}
                   <div
                     className={`absolute inset-0 transition duration-500 ${isActive
-                      ? "bg-[linear-gradient(90deg,rgba(255,255,255,0.98)_0%,rgba(249,252,255,0.96)_48%,rgba(255,255,255,0.56)_74%,rgba(255,255,255,0.18)_100%)]"
-                      : "bg-[linear-gradient(180deg,rgba(255,255,255,0.16)_0%,rgba(244,249,253,0.9)_100%)]"
+                      ? "bg-[image:var(--services-panel-active-overlay)]"
+                      : "bg-[image:var(--services-panel-collapsed-overlay)]"
                       }`}
                   />
 
@@ -289,7 +286,7 @@ export function ServicesShowcase() {
                         <span className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[var(--brand-base)]">
                           {String(index + 1).padStart(2, "0")}
                         </span>
-                        <span className="[writing-mode:vertical-rl] rotate-180 whitespace-nowrap font-[family:var(--font-heading)] text-[1.7rem] font-semibold leading-none tracking-[-0.04em] text-[var(--brand-strong)]">
+                        <span className="[writing-mode:vertical-rl] rotate-180 whitespace-nowrap text-[1.7rem] font-semibold leading-none tracking-[-0.04em] text-[var(--brand-strong)]">
                           {panel.heading}
                         </span>
                       </motion.div>

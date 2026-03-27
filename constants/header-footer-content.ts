@@ -75,7 +75,7 @@ export const footerContent = {
       href: "https://www.google.com/maps/place/Atlanta+Shopping+Mall/data=!4m7!3m6!1s0x3be051003da59acb:0x29ec1eb46f90ff5b!8m2!3d21.1432778!4d72.804667!16s%2Fg%2F11vz8qrh14!19sChIJy5qlPQBR4DsRW_-Qb7Qe7Ck?authuser=0&hl=en&rclk=1",
     },
   ],
-  copyright: "© 2026 Whitestork Software Solutions LLP",
+  copyright: `@${new Date().getFullYear()} Whitestork Software Solutions LLP`,
   legalLinks: [
     { href: "/terms-and-conditions", label: "Terms & Condition" },
     { href: "/privacy-policy", label: "Privacy Policy" },

@@ -95,7 +95,7 @@ export function HomeProjectCarouselSection() {
                 </div>
 
                 <div className="mt-4 sm:mt-6">
-                  <p className="mt-2 font-[family:var(--font-heading)] text-lg font-semibold text-[var(--brand-strong)] sm:text-xl">
+                  <p className="brand-title mt-2 text-lg font-semibold text-[var(--brand-strong)] sm:text-xl">
                     {activeSlide.title}
                   </p>
                   <p className="mt-2 text-sm leading-6 text-[var(--brand-muted)]">
@@ -111,7 +111,7 @@ export function HomeProjectCarouselSection() {
                         <Link
                           href={activeSlide.websiteLink}
                           target="_blank"
-                          className="inline-flex size-11 items-center justify-center rounded-full bg-[var(--brand-base)] text-white shadow-[0_14px_30px_color-mix(in_srgb,var(--brand-base)_24%,transparent)] transition hover:bg-[var(--brand-strong)]"
+                          className="inline-flex size-11 items-center justify-center rounded-full bg-[var(--project-action-surface)] text-[var(--project-action-color)] shadow-[0_14px_30px_color-mix(in_srgb,var(--brand-base)_24%,transparent)] transition hover:bg-[var(--project-action-surface-hover)]"
                           aria-label="Visit Website"
                         />
                       }
@@ -126,7 +126,7 @@ export function HomeProjectCarouselSection() {
                         <Link
                           href={playStoreLink}
                           target="_blank"
-                          className="inline-flex size-11 items-center justify-center rounded-full bg-[var(--brand-base)] text-white shadow-[0_14px_30px_color-mix(in_srgb,var(--brand-base)_24%,transparent)] transition hover:bg-[var(--brand-strong)]"
+                          className="inline-flex size-11 items-center justify-center rounded-full bg-[var(--project-action-surface)] text-[var(--project-action-color)] shadow-[0_14px_30px_color-mix(in_srgb,var(--brand-base)_24%,transparent)] transition hover:bg-[var(--project-action-surface-hover)]"
                           aria-label="Play Store"
                         />
                       }
@@ -141,7 +141,7 @@ export function HomeProjectCarouselSection() {
                         <Link
                           href={appStoreLink}
                           target="_blank"
-                          className="inline-flex size-11 items-center justify-center rounded-full bg-[var(--brand-base)] text-white shadow-[0_14px_30px_color-mix(in_srgb,var(--brand-base)_24%,transparent)] transition hover:bg-[var(--brand-strong)]"
+                          className="inline-flex size-11 items-center justify-center rounded-full bg-[var(--project-action-surface)] text-[var(--project-action-color)] shadow-[0_14px_30px_color-mix(in_srgb,var(--brand-base)_24%,transparent)] transition hover:bg-[var(--project-action-surface-hover)]"
                           aria-label="App Store"
                         />
                       }
